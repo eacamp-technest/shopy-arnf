@@ -8,7 +8,7 @@ function App(): React.JSX.Element {
   }, []);
   return (
     <View>
-      <Text>Hello</Text>
+      <Text>Hello World</Text>
     </View>
   );
 }
