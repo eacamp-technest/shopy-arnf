@@ -5,7 +5,6 @@ export const fonts={
 'BebasNeue':'BebasNeue-Regular.ttf'
 }
 
-
 export const fontSize={
     'fs48':48,
     'fs32':32,
