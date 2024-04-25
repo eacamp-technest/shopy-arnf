@@ -1,8 +1,8 @@
 export const fonts = {
-  Mont400: 'Montserrat-Regular.ttf',
-  Mont600: 'Montserrat-SemiBold.ttf',
-  Mont700: 'Montserrat-Bold.ttf',
-  BebasNeue: 'BebasNeue-Regular.ttf',
+  Mont400: 'Montserrat-Regular',
+  Mont600: 'Montserrat-SemiBold',
+  Mont700: 'Montserrat-Bold',
+  BebasNeue: 'BebasNeue-Regular',
 };
 
 export const fontSize = {
