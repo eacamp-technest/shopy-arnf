@@ -12,4 +12,5 @@ function App(): React.JSX.Element {
     </View>
   );
 }
+
 export default App;
