@@ -1,24 +1,26 @@
 import React, {useEffect} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import { View, StyleSheet,StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import {fonts} from './src/theme/typography';
+import Router from './src/router/router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function App(): React.JSX.Element {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
   return (
-    <View>
-      <Text style={styles.text}>Hello World</Text>
+    <SafeAreaProvider>
+    <StatusBar barStyle={'dark-content'} />
+    <View style={styles.root}>
+      <Router />
     </View>
+  </SafeAreaProvider>
   );
 }
-
 const styles = StyleSheet.create({
-  text: {
-    fontFamily: fonts.Mont400,
-    fontSize: 40,
+  root: {
+    flex:1,
+    backgroundColor:'white'
   },
 });
-
 export default App;

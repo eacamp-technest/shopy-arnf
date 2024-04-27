@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="B5d-lZ-saG">
-                                <rect key="frame" x="-333" y="-156" width="1041" height="931"/>
+                                <rect key="frame" x="-333" y="-166" width="1041" height="931"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -30,7 +30,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash" width="184" height="398.5"/>
+        <image name="splash" width="187.5" height="406"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
