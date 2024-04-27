@@ -11,6 +11,7 @@ import {SvgImage} from './SvgImage';
 import {TypographyStyles} from '../theme/typography';
 import {normalize} from '../theme/metrics';
 import {CommonStyles} from '../theme/common.styles';
+import {colors} from '../theme/colors';
 
 type TPosition = 'left' | 'right';
 type TSize = 'small' | 'block' | 'large';
@@ -97,16 +98,16 @@ const styles = StyleSheet.create({
   },
   right: {},
   small: {
-    backgroundColor: 'blue',
+    backgroundColor: colors.primary,
     padding: normalize('vertical', 7),
   },
 
   block: {
-    backgroundColor: 'red',
+    backgroundColor: colors.primary,
     padding: normalize('vertical', 15),
   },
   large: {
-    backgroundColor: 'green',
+    backgroundColor: colors.primary,
     padding: normalize('vertical', 15),
   },
 });
