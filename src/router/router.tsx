@@ -1,19 +1,16 @@
-import React from 'react'
-import { MainRouter } from './MainRouter'
-import { AuthRouter } from './AuthRouter'
-import { NavigationContainer } from '@react-navigation/native'
+import React from 'react';
+import {MainRouter} from './MainRouter';
+import {AuthRouter} from './AuthRouter';
+import {NavigationContainer} from '@react-navigation/native';
 
-const isAuth = false
+const isAuth = false;
 
 const Router = () => {
-  return(
+  return (
     <NavigationContainer>
-        {isAuth? <MainRouter/> : <AuthRouter/>}
+      {isAuth ? <MainRouter /> : <AuthRouter />}
     </NavigationContainer>
-  )
-   
-    
-  
-}
+  );
+};
 
 export default Router;
