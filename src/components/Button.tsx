@@ -7,7 +7,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {SvgImage} from './SvgImage';
 import {TypographyStyles} from '../theme/typography';
 import {normalize} from '../theme/metrics';
 import {CommonStyles} from '../theme/common.styles';
@@ -28,7 +27,7 @@ interface IButton {
   style?: StyleProp<ViewStyle>;
 }
 
-export const Button: React.FC<Button> = ({
+export const Button: React.FC<IButton> = ({
   text,
   onPress,
   disabled,
@@ -36,22 +35,11 @@ export const Button: React.FC<Button> = ({
   loading,
   position = 'left',
   size = 'block',
-  styles,
+  style,
   types,
 }) => {
   const [pressed, setPressed] = useState<boolean>(false);
 
-  const svgSize = useMemo(() => (size === 'small' ? 16 : 24), [size]);
-
-  const renderLoading = () => {
-    return loading ? (
-      <ActivityIndicator
-        color={'#fff'}
-        size={'small'}
-        style={StyleSheet.absoluteFillObject}
-      />
-    ) : null;
-  };
 
   const onPressIn = useCallback(() => setPressed(true), []);
   const onPressOut = () => setPressed(false);
@@ -63,15 +51,6 @@ export const Button: React.FC<Button> = ({
       disabled={disabled || loading}
       onPress={onPress}>
       <NativeText style={styles.text}>{text}</NativeText>
-      {icon ? (
-        <SvgImage
-          width={svgSize}
-          height={svgSize}
-          color={'#fff'}
-          source={icon}
-        />
-      ) : null}
-      {renderLoading()}
     </Pressable>
   );
 };
@@ -102,7 +81,6 @@ const styles = StyleSheet.create({
   },
 
   block: {
-    backgroundColor: 'red',
     padding: normalize('vertical', 15),
   },
   large: {
