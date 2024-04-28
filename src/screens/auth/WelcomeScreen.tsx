@@ -1,12 +1,13 @@
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import React from 'react';
-import {Button} from '../../components/Button';
+// import {Button} from '../../components/Button';
+
 
 export const WelcomeScreen = () => {
   return (
-    <View>
+    <View >
       <Text>WelcomeScreen</Text>
-      <Button />
+      {/* <Button/> */}
     </View>
   );
 };
