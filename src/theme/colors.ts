@@ -10,7 +10,7 @@ export const colors = {
   sky: {
     lightest: '#F5F5F6',
     lighter: '#E3E3E4',
-    light: '#DADACC',
+    light: '#DADADC',
     base: '#CFCFD1',
     dark: '#8D8D8E',
   },
