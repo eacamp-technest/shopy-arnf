@@ -12,7 +12,7 @@ function App(): React.JSX.Element {
     <SafeAreaProvider>
       <StatusBar barStyle={'dark-content'} />
       <View style={styles.root}>
-        <Router />
+        <Router/>
       </View>
     </SafeAreaProvider>
   );
