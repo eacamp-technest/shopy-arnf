@@ -3,33 +3,33 @@ import React, {useState} from 'react';
 import {colors} from '../theme/colors';
 import {TypographyStyles} from '../theme/typography';
 import MessageSign from '../../assets/vectors/message_sign.svg';
-import ArrowSign from '../../assets/vectors/arrow.svg';
+import ArrowRight from '../../assets/vectors/arrow-right.svg';
 
 interface IButton {
-  onPress: any;
-  disabled: any;
-  label: any;
-  primaryFirst: any;
-  primarySecond: any;
-  primaryThird: any;
-  primaryFourth: any;
-  secondaryFirst: any;
-  secondarySecond: any;
-  secondaryThird: any;
-  secondaryFourth: any;
-  outlineFirst: any;
-  outlineSecond: any;
-  outlineThird: any;
-  outlineFourth: any;
-  transparentFirst: any;
-  transparentFourth: any;
-  large: any;
-  onlyGap: any;
+  onPress?: any;
+  disabled?: any;
+  label?: any;
+  primaryFirst?: any;
+  primarySecond?: any;
+  primaryThird?: any;
+  primaryFourth?: any;
+  secondaryFirst?: any;
+  secondarySecond?: any;
+  secondaryThird?: any;
+  secondaryFourth?: any;
+  outlineFirst?: any;
+  outlineSecond?: any;
+  outlineThird?: any;
+  outlineFourth?: any;
+  transparentFirst?: any;
+  transparentFourth?: any;
+  large?: any;
+  onlyGap?: any;
   showArrowIcon?: boolean;
   showMessageIcon?: boolean;
-  showMessage: any;
-  showArrow: any;
-  smallSize: any;
+  showMessage?: any;
+  showArrow?: any;
+  smallSize?: any;
 }
 
 export const Button: React.FC<IButton> = ({
@@ -109,7 +109,7 @@ export const Button: React.FC<IButton> = ({
             ]}>
             {label}
           </Text>
-          {showArrowIcon && <ArrowSign style={styles.hiddenArrowSign} />}
+          {showArrowIcon && <ArrowRight style={styles.hiddenArrowRight} />}
         </Pressable>
       )}
 
@@ -135,8 +135,8 @@ export const Button: React.FC<IButton> = ({
             ]}>
             {label}
           </Text>
-          <ArrowSign
-            style={[styles.arrowSign, disabled && styles.disabledArrowSign]}
+          <ArrowRight
+            style={[styles.ArrowRight, disabled && styles.disabledArrowRight]}
           />
         </Pressable>
       )}
@@ -222,7 +222,7 @@ export const Button: React.FC<IButton> = ({
             ]}>
             {label}
           </Text>
-          {showArrowIcon && <ArrowSign style={styles.hiddenArrowSign} />}
+          {showArrowIcon && <ArrowRight style={styles.hiddenArrowRight} />}
         </Pressable>
       )}
       {secondaryThird && (
@@ -250,11 +250,11 @@ export const Button: React.FC<IButton> = ({
             ]}>
             {label}
           </Text>
-          <ArrowSign
+          <ArrowRight
             style={[
               styles.buttonSecondaryText,
               pressing && styles.pressedSecondaryText,
-              disabled && styles.disabledArrowSign,
+              disabled && styles.disabledArrowRight,
             ]}
           />
         </Pressable>
@@ -348,7 +348,7 @@ export const Button: React.FC<IButton> = ({
             ]}>
             {label}
           </Text>
-          {showArrowIcon && <ArrowSign style={styles.hiddenArrowSign} />}
+          {showArrowIcon && <ArrowRight style={styles.hiddenArrowRight} />}
         </Pressable>
       )}
       {outlineThird && (
@@ -377,11 +377,11 @@ export const Button: React.FC<IButton> = ({
             ]}>
             {label}
           </Text>
-          <ArrowSign
+          <ArrowRight
             style={[
               styles.buttonOutlineText,
               pressing && styles.pressedOutlineText,
-              disabled && styles.disabledArrowSign,
+              disabled && styles.disabledArrowRight,
             ]}
           />
         </Pressable>
@@ -472,7 +472,7 @@ export const Button: React.FC<IButton> = ({
             ]}>
             {label}
           </Text>
-          <ArrowSign style={styles.hiddenArrowSign} />
+          <ArrowRight style={styles.hiddenArrowRight} />
         </Pressable>
       )}
     </View>
@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
   disabledPrimaryText: {
     color: colors.sky.dark,
   },
-  hiddenArrowSign: {
+  hiddenArrowRight: {
     opacity: 0,
     height: 0,
   },
@@ -537,10 +537,10 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   hiddenMessageSign: {opacity: 0, height: 0},
-  arrowSign: {
+  ArrowRight: {
     color: '#fff',
   },
-  disabledArrowSign: {
+  disabledArrowRight: {
     color: colors.sky.dark,
   },
 

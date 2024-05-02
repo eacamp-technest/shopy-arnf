@@ -41,6 +41,9 @@ export const CommonStyles = StyleSheet.create({
   row: {
     flexDirection: 'row',
   } as ViewStyle,
+  column: {
+    flexDirection: 'column',
+  } as ViewStyle,
   rowReverse: {
     flexDirection: 'row-reverse',
   } as ViewStyle,
