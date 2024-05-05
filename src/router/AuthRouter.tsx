@@ -7,18 +7,26 @@ import {VerificationScreen} from '../screens/auth/VerificationScreen';
 import {PaymentMethodScreen} from '../screens/auth/PaymentMethodScreen';
 import {Routers} from './routers';
 import {NavigationParamlist} from '../types/navigatorTypes';
-import {authScreenOptions} from '../configs/navigationConfigs';
+import {
+  authScreenOptions,
+  defaultScreenOptions,
+} from '../configs/navigationConfigs';
 import {SafeAreaView} from 'react-native';
+import {Edges} from 'react-native-safe-area-context';
 
 const AuthStack = createNativeStackNavigator<NavigationParamlist>();
-
+const edges: Edges = {bottom: 'off', top: 'additive'};
 export const AuthRouter = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}} edges={edges}>
       <AuthStack.Navigator
         screenOptions={authScreenOptions}
         initialRouteName={Routers.welcome}>
-        <AuthStack.Screen name={Routers.welcome} component={WelcomeScreen} />
+        <AuthStack.Screen
+          name={Routers.welcome}
+          component={WelcomeScreen}
+          options={defaultScreenOptions}
+        />
         <AuthStack.Screen name={Routers.login} component={LoginScreen} />
         <AuthStack.Screen name={Routers.register} component={RegisterScreen} />
         <AuthStack.Screen
