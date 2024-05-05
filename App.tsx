@@ -3,6 +3,7 @@ import {View, StyleSheet, StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Router from './src/router/router';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 function App(): React.JSX.Element {
   useEffect(() => {
@@ -12,7 +13,7 @@ function App(): React.JSX.Element {
     <SafeAreaProvider>
       <StatusBar barStyle={'dark-content'} />
       <View style={styles.root}>
-        <Router/>
+        <Router />
       </View>
     </SafeAreaProvider>
   );
@@ -23,4 +24,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 });
-export default App;
+export default gestureHandlerRootHOC(App);
