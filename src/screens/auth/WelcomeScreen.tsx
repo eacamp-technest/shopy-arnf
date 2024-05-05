@@ -16,8 +16,14 @@ import {colors} from '../../theme/colors';
 import {onboarding} from '../../constants/onboarding';
 import {Pagination} from '../../components/Pagination';
 
+type OnboardingItem = {
+  id: number;
+  image: any;
+  title: string;
+};
+
 export const WelcomeScreen = () => {
-  const renderItem = ({item}) => {
+  const renderItem = ({item}: {item: OnboardingItem}) => {
     return (
       <View style={styles.background}>
         <Text style={styles.title}>Shoppay</Text>

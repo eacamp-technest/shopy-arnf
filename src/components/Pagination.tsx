@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   controller: {
     paddingHorizontal: normalize('horizontal', 20),
     paddingVertical: normalize('vertical', 12),
-    backgroundColor: colors.white,
+    backgroundColor:'white',
     borderRadius: 48,
   } as ViewStyle,
   hide: {
