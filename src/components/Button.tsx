@@ -59,7 +59,6 @@ export const Button: React.FC<IButton> = ({
   smallSize,
 }) => {
   const [pressing, setPressing] = useState(false);
-  console.log(pressing);
 
   return (
     <View style={styles.container}>

@@ -17,24 +17,19 @@ export const CommonStyles = StyleSheet.create({
     flexShrink: 1,
   } as ViewStyle | TextStyle,
   flexJustifyCenter: {
-    flex: 1,
     justifyContent: 'center',
   } as ViewStyle,
   flexAlignCenter: {
-    flex: 1,
     alignItems: 'center',
   } as ViewStyle,
   flexRow: {
-    flex: 1,
     flexDirection: 'row',
   } as ViewStyle,
   flexAlignRow: {
-    flex: 1,
     alignItems: 'center',
     flexDirection: 'row',
   } as ViewStyle,
   flexAlignJustifyCenter: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   } as ViewStyle,
@@ -65,7 +60,6 @@ export const CommonStyles = StyleSheet.create({
     flexDirection: 'row',
   } as ViewStyle,
   flexAlignJustifyCenterRow: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

@@ -1,12 +1,17 @@
-import {View, Text, ScrollView} from 'react-native';
-import React from 'react';
+import {View, Text, ScrollView,TextInput} from 'react-native';
+import React,{useState} from 'react';
 import {Button} from '../../components/Button';
-import { NavBars } from '../../components/bars/NavBars';
-import Arrow from '../../../assets/vectors/arrow-right.svg'
+import { NavBars } from '../../components/bars/NavBar';
+import ArrowRight from '../../../assets/vectors/arrow-right.svg'
+import { SearchBar } from '../../components/bars/SearchBar';
+
 export const WelcomeScreen = () => {
-  return (
-<View>
-      <Text> Welcome Screen </Text>
-</View>
-  );
+
+return(
+  <View>
+  <SearchBar searchType='normal' />
+  <SearchBar searchType='transparent' />
+  </View>
+);
+
 };
