@@ -1,4 +1,7 @@
 export const colors = {
+  base: {
+    white: '#FFFFFF',
+  },
   ink: {
     lighter: '#6E707F',
     light: '#666878',
