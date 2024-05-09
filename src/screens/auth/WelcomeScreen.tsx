@@ -20,9 +20,27 @@ import {colors} from '../../theme/colors';
 import {onboarding} from '../../constants/onboarding';
 import {Pagination} from '../../components/Pagination';
 import {AuthButton} from '../../components/AuthButton';
+import {normalize} from '../../theme/metrics';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {NavigationParamlist} from '../../types/navigatorTypes';
+import {Routers} from '../../router/routers';
 
-export const WelcomeScreen = () => {
-  const renderItem = ({item}) => {
+type OnboardingItem = {
+  id: number;
+  image: any;
+  title: string;
+};
+
+export const WelcomeScreen: React.FC<
+  NativeStackScreenProps<NavigationParamlist, Routers.welcome>
+> = ({navigation}) => {
+  const navigateToLogin = () => {
+    navigation.navigate(Routers.login);
+  };
+  const navigateToRegister = () => {
+    navigation.navigate(Routers.register);
+  };
+  const renderItem = ({item}: {item: OnboardingItem}) => {
     return (
       <View style={styles.background}>
         <Text style={styles.title}>Shoppay</Text>
@@ -30,10 +48,35 @@ export const WelcomeScreen = () => {
         <Image
           source={item.image}
           resizeMode={item.id === 0 ? 'cover' : 'contain'}
-          style={styles.image}
+          style={item.id !== 0 ? styles.image2 : styles.image}
         />
-        <Text style={TypographyStyles.title1}>{item.title}</Text>
+        <Text
+          style={[TypographyStyles.title2, item.id === 0 ? {} : styles.pad]}>
+          {item.title}
+        </Text>
         <Pagination selectedIndex={item.id} />
+        <View style={{gap: 20, marginTop: 20}}>
+          <ButtonPrimary
+            label="Create an account"
+            primaryBlock
+            centered
+            onPress={navigateToRegister}
+          />
+          <ButtonPrimary
+            label="Log in Instead"
+            onPress={navigateToLogin}
+            primaryBlock
+            centered
+            customStyles={styles.button}
+          />
+        </View>
+        {item.id !== 0 ? (
+          <View style={styles.termsView}>
+            <Text style={TypographyStyles.SmallNormalRegular}>Help</Text>
+            <View style={styles.divider} />
+            <Text style={TypographyStyles.SmallNormalRegular}>Terms</Text>
+          </View>
+        ) : null}
       </View>
     );
   };
@@ -75,6 +118,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.sky.lightest,
   },
+  button: {
+    backgroundColor: colors.ink.base,
+    alignItems: 'center',
+  },
   contentContainerStyle: {},
   background: {
     width: windowWidth,
@@ -82,12 +129,22 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingBottom: 16,
     paddingHorizontal: 16,
-    gap: 24,
+    gap: 5,
+  },
+  image2: {
+    marginBottom: 100,
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    flex: 1,
+    right: 0,
+    bottom: 0,
   },
   image: {
     width: '100%',
     height: '100%',
     position: 'absolute',
+
     flex: 1,
     right: 0,
     bottom: 0,
@@ -108,7 +165,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     position: 'absolute',
     zIndex: 1,
-    top: 76,
+    top: 56,
     left: 154,
+  },
+  pad: {
+    marginLeft: 16,
+    width: 327,
+    height: 72,
+    textAlign: 'center',
+  },
+  termsView: {
+    gap: normalize('horizontal', 8),
+    paddingTop: normalize('vertical', 54),
+    ...CommonStyles.alignJustifyCenterRow,
+  },
+  divider: {
+    width: 1,
+    height: 15,
+    backgroundColor: colors.ink.lighter,
   },
 });

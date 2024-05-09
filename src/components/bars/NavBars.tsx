@@ -10,6 +10,7 @@ import React from 'react';
 import {TypographyStyles} from '../../theme/typography';
 import {SvgXml} from 'react-native-svg';
 import {CommonStyles} from '../../theme/common.styles';
+import { WelcomeScreen } from '../../screens/auth/WelcomeScreen';
 
 type TSize = 'standard' | 'large';
 type TBack = 'backToSettings' | 'single';
@@ -17,8 +18,8 @@ type TBack = 'backToSettings' | 'single';
 interface IBars {
   smallTitle?: string;
   size: TSize;
-  icon1?: string | React.ReactNode;
-  icon2?: string | React.ReactNode;
+  iconLeft?: string | React.ReactNode;
+  iconRight?: string | React.ReactNode;
   button?: React.ReactNode;
   largeTitle?: string;
   caption?: string;
@@ -32,8 +33,8 @@ interface IBars {
 export const NavBars: React.FC<IBars> = ({
   smallTitle,
   size,
-  icon1,
-  icon2,
+  iconLeft,
+  iconRight,
   largeTitle,
   caption,
   style,
@@ -46,18 +47,18 @@ export const NavBars: React.FC<IBars> = ({
     <View>
       <View style={[styles.navBar, styles[size], styles[backStyle], style]}>
         <View style={CommonStyles.flexAlignRow}>
-          <Pressable>
-            {icon1 && typeof icon1 === 'string' ? (
-              <SvgXml xml={icon1} />
+          <Pressable onPress={onPress}>
+            {iconLeft && typeof iconLeft === 'string' ? (
+              <SvgXml xml={iconLeft} />
             ) : (
-              icon1
+              iconLeft
             )}
           </Pressable>
           <Text style={styles.settings}> {settings} </Text>
         </View>
         <Text style={styles.title}>{smallTitle}</Text>
-        <Pressable>
-          {icon2 && typeof icon2 === 'string' ? <SvgXml xml={icon2} /> : icon2}
+        <Pressable onPress={onPress}>
+          {iconRight && typeof iconRight === 'string' ? <SvgXml xml={iconRight} /> : iconRight}
         </Pressable>
       </View>
       <View style={[styles.navBar, styles[size]]}>
@@ -65,7 +66,7 @@ export const NavBars: React.FC<IBars> = ({
           <Text style={styles.largeTitle}>{largeTitle}</Text>
           <Text style={styles.caption}>{caption}</Text>
         </View>
-        <Pressable>
+        <Pressable onPress={onPress}>
           {largeIcon && typeof largeIcon === 'string' ? (
             <SvgXml xml={largeIcon} />
           ) : (
@@ -83,16 +84,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     alignSelf: 'center',
+    
   },
   standard: {
     width: 375,
     height: 48,
     gap: 120,
+    marginLeft:24
   },
   large: {
     width: 375,
     height: 60,
     gap: 85,
+    marginLeft:-24,
+    marginTop:-48
   },
   title: {
     ...TypographyStyles.title3,
