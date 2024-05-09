@@ -19,6 +19,7 @@ import {TypographyStyles} from '../../theme/typography';
 import {colors} from '../../theme/colors';
 import {onboarding} from '../../constants/onboarding';
 import {Pagination} from '../../components/Pagination';
+import {AuthButton} from '../../components/AuthButton';
 import {normalize} from '../../theme/metrics';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
@@ -55,7 +56,12 @@ export const WelcomeScreen: React.FC<
         </Text>
         <Pagination selectedIndex={item.id} />
         <View style={{gap: 20, marginTop: 20}}>
-          <ButtonPrimary label="Create an account" primaryBlock centered onPress={navigateToRegister} />
+          <ButtonPrimary
+            label="Create an account"
+            primaryBlock
+            centered
+            onPress={navigateToRegister}
+          />
           <ButtonPrimary
             label="Log in Instead"
             onPress={navigateToLogin}
@@ -76,7 +82,7 @@ export const WelcomeScreen: React.FC<
   };
   return (
     <View style={styles.root}>
-      <FlatList
+      {/* <FlatList
         data={onboarding}
         initialScrollIndex={0}
         horizontal
@@ -86,7 +92,23 @@ export const WelcomeScreen: React.FC<
         contentContainerStyle={styles.contentContainerStyle}
         renderItem={renderItem}
         style={CommonStyles.flex}
+      /> */}
+      <AuthButton label="Continue with Apple" platform="apple"></AuthButton>
+
+      <AuthButton
+        label="Continue with Google"
+        hasGoogleSign={true}
+        platform="google"
       />
+      <AuthButton
+        label="Continue with Facebook"
+        hasFacebookSign={true}
+        platform="facebook"></AuthButton>
+
+      <AuthButton
+        label="Continue with Twitter"
+        hasTwitterSign={true}
+        platform="twitter"></AuthButton>
     </View>
   );
 };
