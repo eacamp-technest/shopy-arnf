@@ -15,6 +15,7 @@ import { normalize } from '../../theme/metrics';
 import ChevronLeft from '../../../assets/vectors/chevron-left.svg'
 import Settings from '../../../assets/vectors/settings.svg'
 import User from '../../../assets/vectors/user.svg'
+import { colors } from '../../theme/colors';
 
 type TSize = 'standard' | 'large';
 type TBack = 'backToSettings' | 'single';
@@ -52,13 +53,16 @@ export const NavBars: React.FC<IBars> = ({
       <View style={[styles.navBar, styles[size], styles[backStyle], style]}>
         <View style={CommonStyles.flexAlignRow}>
           <Pressable onPress={onPress}>
-            {iconLeft ?  <ChevronLeft/> : null}
+            {iconLeft ?  <ChevronLeft color={colors.ink.darkest} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}/> 
+            : null}
           </Pressable>
           <Text style={styles.settings}> {settings} </Text>
         </View>
         <Text style={styles.title}>{smallTitle}</Text>
         <Pressable onPress={onPress}>
-          {iconRight ? <Settings/> : null}
+          {iconRight ? <Settings color={colors.ink.darkest} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}/> 
+          : null}
+
         </Pressable>
       </View>
       <View style={[styles.navBar, styles[size]]}>
@@ -67,7 +71,8 @@ export const NavBars: React.FC<IBars> = ({
           <Text style={styles.caption}>{caption}</Text>
         </View>
         <Pressable onPress={onPress}>
-          {largeIcon ? <User/> : null}
+          {largeIcon ? <User color={colors.ink.darkest} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}/> 
+          : null}
         </Pressable>
       </View>
     </View>

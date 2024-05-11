@@ -28,7 +28,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.login>
     <ScrollView scrollEnabled={false} style={CommonStyles.flex}>
         <View style={styles.container}>
         <View style={styles.navbar}>
-      <NavBars size='standard' backStyle='single' iconLeft={<ChevronLeft color={colors.ink.darkest} onPress={navigateToWelcome} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}/>}/>
+      <NavBars size='standard' backStyle='single' iconLeft  onPress={navigateToWelcome} />
       <View style={styles.largeNavbar}>
       <NavBars size='large' largeTitle='WELCOME!' backStyle='single'/>
       </View>
