@@ -13,6 +13,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4824F84AEEC547BA877B69FB /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62F320E64D72433A95A73C8B /* BebasNeue-Regular.ttf */; };
+		69F40B622CDE438081070ABF /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DA43AE54740CC9A19B127 /* BootSplash.storyboard */; };
 		7699B88040F8A987B510C191 /* libPods-shoppay-shoppayTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-shoppay-shoppayTests.a */; };
 		7E6296A8B328494B8AA526A6 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3D071F328A6470A8115611E /* Montserrat-SemiBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -44,6 +45,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = shoppay/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-shoppay-shoppayTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-shoppay-shoppayTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-shoppay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoppay.debug.xcconfig"; path = "Target Support Files/Pods-shoppay/Pods-shoppay.debug.xcconfig"; sourceTree = "<group>"; };
+		4C1DA43AE54740CC9A19B127 /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = shoppay/BootSplash.storyboard; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-shoppay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoppay.release.xcconfig"; path = "Target Support Files/Pods-shoppay/Pods-shoppay.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-shoppay-shoppayTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shoppay-shoppayTests.debug.xcconfig"; path = "Target Support Files/Pods-shoppay-shoppayTests/Pods-shoppay-shoppayTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-shoppay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-shoppay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				4C1DA43AE54740CC9A19B127 /* BootSplash.storyboard */,
 			);
 			name = shoppay;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				FD6E0DC884244FDB807D50D8 /* Montserrat-Bold.ttf in Resources */,
 				BB650AC23BFE4392B384019F /* Montserrat-Regular.ttf in Resources */,
 				7E6296A8B328494B8AA526A6 /* Montserrat-SemiBold.ttf in Resources */,
+				69F40B622CDE438081070ABF /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,10 +616,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -687,10 +688,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
