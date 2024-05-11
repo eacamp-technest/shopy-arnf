@@ -12,6 +12,9 @@ import {SvgXml} from 'react-native-svg';
 import {CommonStyles} from '../../theme/common.styles';
 import { WelcomeScreen } from '../../screens/auth/WelcomeScreen';
 import { normalize } from '../../theme/metrics';
+import ChevronLeft from '../../../assets/vectors/chevron-left.svg'
+import Settings from '../../../assets/vectors/settings.svg'
+import User from '../../../assets/vectors/user.svg'
 
 type TSize = 'standard' | 'large';
 type TBack = 'backToSettings' | 'single';
@@ -49,17 +52,13 @@ export const NavBars: React.FC<IBars> = ({
       <View style={[styles.navBar, styles[size], styles[backStyle], style]}>
         <View style={CommonStyles.flexAlignRow}>
           <Pressable onPress={onPress}>
-            {iconLeft && typeof iconLeft === 'string' ? (
-              <SvgXml xml={iconLeft} />
-            ) : (
-              iconLeft
-            )}
+            {iconLeft ?  <ChevronLeft/> : null}
           </Pressable>
           <Text style={styles.settings}> {settings} </Text>
         </View>
         <Text style={styles.title}>{smallTitle}</Text>
         <Pressable onPress={onPress}>
-          {iconRight && typeof iconRight === 'string' ? <SvgXml xml={iconRight} /> : iconRight}
+          {iconRight ? <Settings/> : null}
         </Pressable>
       </View>
       <View style={[styles.navBar, styles[size]]}>
@@ -68,11 +67,7 @@ export const NavBars: React.FC<IBars> = ({
           <Text style={styles.caption}>{caption}</Text>
         </View>
         <Pressable onPress={onPress}>
-          {largeIcon && typeof largeIcon === 'string' ? (
-            <SvgXml xml={largeIcon} />
-          ) : (
-            largeIcon
-          )}
+          {largeIcon ? <User/> : null}
         </Pressable>
       </View>
     </View>
