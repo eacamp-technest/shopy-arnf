@@ -29,7 +29,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
     <ScrollView scrollEnabled={false}>
       <View style={styles.container}>
         <View >
-      <NavBars size='standard' backStyle='single' iconLeft={<ChevronLeft color={colors.ink.darkest} onPress={navigateToWelcome} hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}/>}/>
+      <NavBars size='standard' backStyle='single' iconLeft onPress={navigateToWelcome}/>
       <NavBars size='large' backStyle='single' largeTitle='CREATE ACCOUNT'/>
       </View>
       <TextInputs textLabel='Full name' placeholder='Enter your name'/>

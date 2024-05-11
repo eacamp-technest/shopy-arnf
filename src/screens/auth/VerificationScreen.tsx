@@ -22,7 +22,7 @@ export const VerificationScreen: React.FC<
     <View>
       <NavBars
         size="standard"
-        iconLeft={<ArrowLeft />}
+        iconLeft
         backStyle="single"
         style={{paddingVertical: 12}}
         onPress={navigateToRegister}
