@@ -4,22 +4,15 @@ import {
   StyleSheet,
   FlatList,
   Image,
-  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
-import {ButtonSecondary} from '../../components/ButtonSecondary';
-import {ButtonOutline} from '../../components/ButtonOutline';
-import {ButtonTransparent} from '../../components/ButtonTransparent';
-import {NavBars} from '../../components/bars/NavBars';
-import Arrow from '../../../assets/vectors/arrow-right.svg';
 import {CommonStyles} from '../../theme/common.styles';
 import {windowWidth} from '../../theme/consts.styles';
 import {TypographyStyles} from '../../theme/typography';
 import {colors} from '../../theme/colors';
 import {onboarding} from '../../constants/onboarding';
 import {Pagination} from '../../components/Pagination';
-import {AuthButton} from '../../components/AuthButton';
 import {normalize} from '../../theme/metrics';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
@@ -48,9 +41,10 @@ export const WelcomeScreen: React.FC<
         <Image
           source={item.image}
           resizeMode={item.id === 0 ? 'cover' : 'contain'}
-          style={item.id !== 0 ? styles.image2 : styles.image}
+          style={[item.id !== 0 ? styles.image2 : styles.image,item.id==2? styles.group:null]}
         />
         <Text
+        numberOfLines={2}
           style={[TypographyStyles.title2, item.id === 0 ? {} : styles.pad]}>
           {item.title}
         </Text>
@@ -89,26 +83,9 @@ export const WelcomeScreen: React.FC<
         pagingEnabled
         initialNumToRender={1}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainerStyle}
         renderItem={renderItem}
         style={CommonStyles.flex}
       />
-      {/* <AuthButton label="Continue with Apple" platform="apple"></AuthButton>
-
-      <AuthButton
-        label="Continue with Google"
-        hasGoogleSign={true}
-        platform="google"
-      />
-      <AuthButton
-        label="Continue with Facebook"
-        hasFacebookSign={true}
-        platform="facebook"></AuthButton>
-
-      <AuthButton
-        label="Continue with Twitter"
-        hasTwitterSign={true}
-        platform="twitter"></AuthButton> */}
     </View>
   );
 };
@@ -122,7 +99,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.ink.base,
     alignItems: 'center',
   },
-  contentContainerStyle: {},
   background: {
     width: windowWidth,
     flex: 1,
@@ -132,19 +108,19 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   image2: {
-    marginBottom: 100,
+    marginBottom: 110,
     width: '100%',
     height: '100%',
     position: 'absolute',
     flex: 1,
     right: 0,
     bottom: 0,
+    margin:16
   },
   image: {
     width: '100%',
     height: '100%',
     position: 'absolute',
-
     flex: 1,
     right: 0,
     bottom: 0,
@@ -166,13 +142,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 1,
     top: 56,
-    left: 154,
   },
   pad: {
     marginLeft: 16,
-    width: 327,
-    height: 72,
+    width: '100%',
+    height: '50%',
     textAlign: 'center',
+    position:'absolute',
+    padding:42
   },
   termsView: {
     gap: normalize('horizontal', 8),
@@ -184,4 +161,10 @@ const styles = StyleSheet.create({
     height: 15,
     backgroundColor: colors.ink.lighter,
   },
+  group:{
+    width:250,
+    height:'100%',
+    flex:1,
+    marginRight:70
+  }
 });
