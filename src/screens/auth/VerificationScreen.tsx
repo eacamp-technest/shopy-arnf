@@ -58,7 +58,6 @@ export const VerificationScreen: React.FC<
       <ButtonPrimary
         label="Continue"
         onPress={() => console.log('Next')}
-        disabled={true}
         centered
         primaryBlock
       />

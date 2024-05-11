@@ -11,6 +11,7 @@ import {TypographyStyles} from '../../theme/typography';
 import {SvgXml} from 'react-native-svg';
 import {CommonStyles} from '../../theme/common.styles';
 import { WelcomeScreen } from '../../screens/auth/WelcomeScreen';
+import { normalize } from '../../theme/metrics';
 
 type TSize = 'standard' | 'large';
 type TBack = 'backToSettings' | 'single';
@@ -87,10 +88,10 @@ const styles = StyleSheet.create({
     
   },
   standard: {
-    width: 375,
-    height: 48,
+    width: normalize('width',375),
+    height: normalize('height',48),
     gap: 120,
-    marginLeft:24
+    marginLeft:48
   },
   large: {
     width: 375,

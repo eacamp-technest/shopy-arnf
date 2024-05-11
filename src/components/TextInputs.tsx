@@ -4,6 +4,7 @@ import SvgImage from 'react-native-svg/lib/typescript/elements/Image';
 import MapPin from '../../assets/vectors/map-pin.svg'
 import { TypographyStyles } from '../theme/typography';
 import { colors } from '../theme/colors';
+import { normalize } from '../theme/metrics';
 
 interface ITextInput {
   textLabel?: string;
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
     gap:12,
   },
   inputContainer: {
-    width: 327,
-    height: 48,
+    width: normalize('width',327),
+    height: normalize('height',48),
     borderRadius: 8,
     borderWidth: 1,
     borderColor: colors.sky.light,
