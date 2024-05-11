@@ -82,7 +82,7 @@ export const WelcomeScreen: React.FC<
   };
   return (
     <View style={styles.root}>
-      {/* <FlatList
+      <FlatList
         data={onboarding}
         initialScrollIndex={0}
         horizontal
@@ -92,8 +92,8 @@ export const WelcomeScreen: React.FC<
         contentContainerStyle={styles.contentContainerStyle}
         renderItem={renderItem}
         style={CommonStyles.flex}
-      /> */}
-      <AuthButton label="Continue with Apple" platform="apple"></AuthButton>
+      />
+      {/* <AuthButton label="Continue with Apple" platform="apple"></AuthButton>
 
       <AuthButton
         label="Continue with Google"
@@ -108,7 +108,7 @@ export const WelcomeScreen: React.FC<
       <AuthButton
         label="Continue with Twitter"
         hasTwitterSign={true}
-        platform="twitter"></AuthButton>
+        platform="twitter"></AuthButton> */}
     </View>
   );
 };
