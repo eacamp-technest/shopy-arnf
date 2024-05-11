@@ -4,9 +4,10 @@ import {
   StyleSheet,
   FlatList,
   Image,
+  Button,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {ButtonSecondary} from '../../components/ButtonSecondary';
 import {ButtonOutline} from '../../components/ButtonOutline';
@@ -24,6 +25,7 @@ import {normalize} from '../../theme/metrics';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
+import {CustomModal} from '../../components/Modal';
 
 type OnboardingItem = {
   id: number;
@@ -34,12 +36,20 @@ type OnboardingItem = {
 export const WelcomeScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.welcome>
 > = ({navigation}) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   const navigateToLogin = () => {
     navigation.navigate(Routers.login);
   };
+
   const navigateToRegister = () => {
     navigation.navigate(Routers.register);
   };
+
   const renderItem = ({item}: {item: OnboardingItem}) => {
     return (
       <View style={styles.background}>
@@ -82,6 +92,11 @@ export const WelcomeScreen: React.FC<
   };
   return (
     <View style={styles.root}>
+      <Button title="Show modal" onPress={toggleModal} />
+
+      <CustomModal
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}></CustomModal>
       {/* <FlatList
         data={onboarding}
         initialScrollIndex={0}
@@ -93,7 +108,7 @@ export const WelcomeScreen: React.FC<
         renderItem={renderItem}
         style={CommonStyles.flex}
       /> */}
-      <AuthButton label="Continue with Apple" platform="apple"></AuthButton>
+      {/* <AuthButton label="Continue with Apple" platform="apple"></AuthButton>
 
       <AuthButton
         label="Continue with Google"
@@ -108,7 +123,7 @@ export const WelcomeScreen: React.FC<
       <AuthButton
         label="Continue with Twitter"
         hasTwitterSign={true}
-        platform="twitter"></AuthButton>
+        platform="twitter"></AuthButton> */}
     </View>
   );
 };
