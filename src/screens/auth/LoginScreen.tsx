@@ -27,12 +27,14 @@ NativeStackScreenProps<NavigationParamlist, Routers.login>
   return (
     <ScrollView scrollEnabled={false} style={CommonStyles.flex}>
         <View style={styles.container}>
-        <View style={styles.navbar}>
+            <View style={styles.navbar}>
+        <View style={styles.smallnavbar}>
       <NavBars size='standard' backStyle='single' iconLeft  onPress={navigateToWelcome} />
       <View style={styles.largeNavbar}>
       <NavBars size='large' largeTitle='WELCOME!' backStyle='single'/>
       </View>
       </View>
+        </View>
       <TextInputs textLabel='Email' placeholder='Enter your email'/>
       <TextInputs textLabel='Password' placeholder='Enter your password'/>
       </View>
@@ -52,6 +54,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.login>
             callback: () => console.log('terms')
           }
         ]}/>
+       
         </View>
         </View>
       </View>
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
     container:{
         gap:24,
     },
-  navbar:{
+  smallnavbar:{
     alignSelf:'center',
     marginLeft:normalize('horizontal',48),
     
@@ -87,11 +90,19 @@ const styles = StyleSheet.create({
   },
   textLink:{
     ...TypographyStyles.SmallNormalRegular,
+    flex:1,
+    width:'100%',
+    height:'100%',
+    paddingBottom:'100%',
+    marginTop:normalize('vertical',80),
+    bottom:0,
+
   },
   final:{
     flex:1,
     alignSelf:'center',
-    gap:180,
-    padding:0
+  },
+  navbar:{
+    marginLeft:-30
   }
 })
