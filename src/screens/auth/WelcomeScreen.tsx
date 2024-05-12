@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
 import React from 'react';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {CommonStyles} from '../../theme/common.styles';
@@ -41,10 +35,13 @@ export const WelcomeScreen: React.FC<
         <Image
           source={item.image}
           resizeMode={item.id === 0 ? 'cover' : 'contain'}
-          style={[item.id !== 0 ? styles.image2 : styles.image,item.id==2? styles.group:null]}
+          style={[
+            item.id !== 0 ? styles.image2 : styles.image,
+            item.id == 2 ? styles.group : null,
+          ]}
         />
         <Text
-        numberOfLines={2}
+          numberOfLines={2}
           style={[TypographyStyles.title2, item.id === 0 ? {} : styles.pad]}>
           {item.title}
         </Text>
@@ -76,7 +73,7 @@ export const WelcomeScreen: React.FC<
   };
   return (
     <View style={styles.root}>
-      <FlatList
+      {/* <FlatList
         data={onboarding}
         initialScrollIndex={0}
         horizontal
@@ -85,7 +82,7 @@ export const WelcomeScreen: React.FC<
         showsHorizontalScrollIndicator={false}
         renderItem={renderItem}
         style={CommonStyles.flex}
-      />
+      /> */}
     </View>
   );
 };
@@ -115,7 +112,7 @@ const styles = StyleSheet.create({
     flex: 1,
     right: 0,
     bottom: 0,
-    margin:16
+    margin: 16,
   },
   image: {
     width: '100%',
@@ -148,8 +145,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '50%',
     textAlign: 'center',
-    position:'absolute',
-    padding:42
+    position: 'absolute',
+    padding: 42,
   },
   termsView: {
     gap: normalize('horizontal', 8),
@@ -161,10 +158,10 @@ const styles = StyleSheet.create({
     height: 15,
     backgroundColor: colors.ink.lighter,
   },
-  group:{
-    width:250,
-    height:'100%',
-    flex:1,
-    marginRight:70
-  }
+  group: {
+    width: 250,
+    height: '100%',
+    flex: 1,
+    marginRight: 70,
+  },
 });
