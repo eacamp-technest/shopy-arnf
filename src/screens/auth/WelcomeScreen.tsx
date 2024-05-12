@@ -92,11 +92,6 @@ export const WelcomeScreen: React.FC<
   };
   return (
     <View style={styles.root}>
-      <Button title="Show modal" onPress={toggleModal} />
-
-      <CustomModal
-        isModalVisible={isModalVisible}
-        toggleModal={toggleModal}></CustomModal>
       {/* <FlatList
         data={onboarding}
         initialScrollIndex={0}
