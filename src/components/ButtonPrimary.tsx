@@ -4,6 +4,7 @@ import {colors} from '../theme/colors';
 import {TypographyStyles} from '../theme/typography';
 import MessageSign from '../../assets/vectors/message_sign.svg';
 import ArrowRight from '../../assets/vectors/arrow-right.svg';
+import {normalize} from '../theme/metrics';
 
 export interface IButtonPrimary {
   onPress?: () => void;
@@ -16,6 +17,7 @@ export interface IButtonPrimary {
   primaryBlock?: boolean;
   primaryLarge?: boolean;
   primarySmall?: boolean;
+  modalButton?: boolean;
 }
 
 export const ButtonPrimary: React.FC<IButtonPrimary> = ({
@@ -31,6 +33,7 @@ export const ButtonPrimary: React.FC<IButtonPrimary> = ({
   primaryBlock,
   primaryLarge,
   primarySmall,
+  modalButton,
 }) => {
   const [pressing, setPressing] = useState(false);
 
@@ -42,6 +45,7 @@ export const ButtonPrimary: React.FC<IButtonPrimary> = ({
           primaryBlock && styles.primaryBlock,
           primaryLarge && styles.primaryLarge,
           primarySmall && styles.primarySmall,
+          modalButton && styles.modalButton,
           pressed && styles.pressed,
           disabled && styles.disabled,
           customStyles,
@@ -86,12 +90,12 @@ const styles = StyleSheet.create({
 
   primaryBlock: {
     backgroundColor: colors.primary.base,
-    width: '100%',
+    width: normalize('width', 327),
   },
 
   primaryLarge: {
     backgroundColor: colors.primary.base,
-    width: 216,
+    width: normalize('width', 216),
     gap: 15,
     paddingHorizontal: 0,
     justifyContent: 'center',
@@ -99,8 +103,12 @@ const styles = StyleSheet.create({
 
   primarySmall: {
     backgroundColor: colors.primary.base,
-    width: 188,
+    width: normalize('width', 171),
     paddingHorizontal: 20,
+  },
+  modalButton: {
+    backgroundColor: colors.primary.base,
+    width: normalize('width', 279),
   },
 
   disabled: {

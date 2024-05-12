@@ -1,5 +1,13 @@
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  Button,
+  Pressable,
+} from 'react-native';
+import React, {useState} from 'react';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {CommonStyles} from '../../theme/common.styles';
 import {windowWidth} from '../../theme/consts.styles';
@@ -11,6 +19,8 @@ import {normalize} from '../../theme/metrics';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
+import {CustomModal} from '../../components/CustomModal';
+import {TextInputs} from '../../components/TextInputs';
 
 type OnboardingItem = {
   id: number;
@@ -21,6 +31,7 @@ type OnboardingItem = {
 export const WelcomeScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.welcome>
 > = ({navigation}) => {
+  const [isModalVisible, setModalVisible] = useState(false);
   const navigateToLogin = () => {
     navigation.navigate(Routers.login);
   };
@@ -71,8 +82,23 @@ export const WelcomeScreen: React.FC<
       </View>
     );
   };
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.root}>
+      <Button title="Show modal" onPress={toggleModal} />
+      <CustomModal
+        title="REMOVE ITEM?"
+        subtitle="Are you sure want to remove this item from your cart?"
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        hasModalMiddleImage={true}>
+        <TextInputs>dfgdfg</TextInputs>
+      </CustomModal>
+
       {/* <FlatList
         data={onboarding}
         initialScrollIndex={0}
