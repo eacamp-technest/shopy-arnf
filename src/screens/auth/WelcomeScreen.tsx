@@ -4,8 +4,10 @@ import {
   StyleSheet,
   FlatList,
   Image,
+  Button,
+  Pressable,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {CommonStyles} from '../../theme/common.styles';
 import {windowWidth} from '../../theme/consts.styles';
@@ -17,6 +19,8 @@ import {normalize} from '../../theme/metrics';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
+import {CustomModal} from '../../components/CustomModal';
+import {TextInputs} from '../../components/TextInputs';
 
 type OnboardingItem = {
   id: number;
@@ -27,6 +31,7 @@ type OnboardingItem = {
 export const WelcomeScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.welcome>
 > = ({navigation}) => {
+  const [isModalVisible, setModalVisible] = useState(false);
   const navigateToLogin = () => {
     navigation.navigate(Routers.login);
   };
@@ -41,10 +46,13 @@ export const WelcomeScreen: React.FC<
         <Image
           source={item.image}
           resizeMode={item.id === 0 ? 'cover' : 'contain'}
-          style={[item.id !== 0 ? styles.image2 : styles.image,item.id==2? styles.group:null]}
+          style={[
+            item.id !== 0 ? styles.image2 : styles.image,
+            item.id == 2 ? styles.group : null,
+          ]}
         />
         <Text
-        numberOfLines={2}
+          numberOfLines={2}
           style={[TypographyStyles.title2, item.id === 0 ? {} : styles.pad]}>
           {item.title}
         </Text>
@@ -74,9 +82,22 @@ export const WelcomeScreen: React.FC<
       </View>
     );
   };
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.root}>
-      <FlatList
+      <Button title="Show modal" onPress={toggleModal} />
+      <CustomModal
+        title="REMOVE ITEM?"
+        subtitle="Are you sure want to remove this item from your cart?"
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        hasModalMiddleImage={true}></CustomModal>
+
+      {/* <FlatList
         data={onboarding}
         initialScrollIndex={0}
         horizontal
@@ -85,7 +106,7 @@ export const WelcomeScreen: React.FC<
         showsHorizontalScrollIndicator={false}
         renderItem={renderItem}
         style={CommonStyles.flex}
-      />
+      /> */}
     </View>
   );
 };
@@ -115,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 1,
     right: 0,
     bottom: 0,
-    margin:16
+    margin: 16,
   },
   image: {
     width: '100%',
@@ -148,8 +169,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '50%',
     textAlign: 'center',
-    position:'absolute',
-    padding:42
+    position: 'absolute',
+    padding: 42,
   },
   termsView: {
     gap: normalize('horizontal', 8),
@@ -161,10 +182,10 @@ const styles = StyleSheet.create({
     height: 15,
     backgroundColor: colors.ink.lighter,
   },
-  group:{
-    width:250,
-    height:'100%',
-    flex:1,
-    marginRight:70
-  }
+  group: {
+    width: 250,
+    height: '100%',
+    flex: 1,
+    marginRight: 70,
+  },
 });

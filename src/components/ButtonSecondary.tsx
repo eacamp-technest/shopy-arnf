@@ -4,6 +4,7 @@ import {colors} from '../theme/colors';
 import {TypographyStyles} from '../theme/typography';
 import MessageSign from '../../assets/vectors/message_sign.svg';
 import ArrowRight from '../../assets/vectors/arrow-right.svg';
+import {normalize} from '../theme/metrics';
 
 export interface IButtonSecondary {
   onPress?: () => void;
@@ -102,12 +103,12 @@ const styles = StyleSheet.create({
 
   secondaryBlock: {
     backgroundColor: colors.primary.lightest,
-    width: '100%',
+    width: normalize('width', 327),
   },
 
   secondaryLarge: {
     backgroundColor: colors.primary.lightest,
-    width: 216,
+    width: normalize('width', 216),
     gap: 15,
     paddingHorizontal: 0,
     justifyContent: 'center',
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
 
   secondarySmall: {
     backgroundColor: colors.primary.lightest,
-    width: 188,
+    width: normalize('width', 171),
     paddingHorizontal: 20,
   },
 

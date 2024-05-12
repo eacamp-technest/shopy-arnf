@@ -4,6 +4,7 @@ import {colors} from '../theme/colors';
 import {TypographyStyles} from '../theme/typography';
 import MessageSign from '../../assets/vectors/message_sign.svg';
 import ArrowRight from '../../assets/vectors/arrow-right.svg';
+import {normalize} from '../theme/metrics';
 
 export interface IButtonTransparent {
   onPress?: () => void;
@@ -18,6 +19,7 @@ export interface IButtonTransparent {
   transparentBlock?: boolean;
   transparentLarge?: boolean;
   transparentSmall?: boolean;
+  modalButton?: boolean;
 }
 export const ButtonTransparent: React.FC<IButtonTransparent> = ({
   onPress,
@@ -32,6 +34,7 @@ export const ButtonTransparent: React.FC<IButtonTransparent> = ({
   transparentBlock,
   transparentLarge,
   transparentSmall,
+  modalButton,
 }) => {
   const [pressing, setPressing] = useState(false);
 
@@ -43,6 +46,7 @@ export const ButtonTransparent: React.FC<IButtonTransparent> = ({
           transparentBlock && styles.transparentBlock,
           transparentLarge && styles.transparentLarge,
           transparentSmall && styles.transparentSmall,
+          modalButton && styles.modalButton,
           pressed && styles.pressed,
           disabled && styles.disabled,
           customStyles,
@@ -96,12 +100,12 @@ const styles = StyleSheet.create({
 
   transparentBlock: {
     backgroundColor: colors.base.white,
-    width: '100%',
+    width: normalize('width', 327),
   },
 
   transparentLarge: {
     backgroundColor: colors.base.white,
-    width: 216,
+    width: normalize('width', 216),
     gap: 15,
     paddingHorizontal: 0,
     justifyContent: 'center',
@@ -109,8 +113,13 @@ const styles = StyleSheet.create({
 
   transparentSmall: {
     backgroundColor: colors.base.white,
-    width: 188,
+    width: normalize('width', 171),
     paddingHorizontal: 20,
+  },
+
+  modalButton: {
+    backgroundColor: colors.base.white,
+    width: normalize('width', 279),
   },
 
   disabled: {
