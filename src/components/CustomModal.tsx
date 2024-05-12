@@ -11,7 +11,16 @@ import ModalSmallImage from '../../assets/vectors/modalSmallImage.svg';
 import {ScrollView} from 'react-native-gesture-handler';
 import {normalize} from '../theme/metrics';
 
-export interface IModalBase {}
+export interface IModalBase {
+  isModalVisible?: boolean;
+  toggleModal: () => void;
+  children: React.ReactNode;
+  title: string;
+  subtitle: string;
+  hasModalImage?: boolean;
+  hasModalMiddleImage?: boolean;
+  hasModalSmallImage?: boolean;
+}
 
 export const CustomModal: React.FC<IModalBase> = ({
   isModalVisible,

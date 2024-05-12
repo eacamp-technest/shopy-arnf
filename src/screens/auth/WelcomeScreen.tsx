@@ -95,9 +95,7 @@ export const WelcomeScreen: React.FC<
         subtitle="Are you sure want to remove this item from your cart?"
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
-        hasModalMiddleImage={true}>
-        <TextInputs>dfgdfg</TextInputs>
-      </CustomModal>
+        hasModalMiddleImage={true}></CustomModal>
 
       {/* <FlatList
         data={onboarding}
