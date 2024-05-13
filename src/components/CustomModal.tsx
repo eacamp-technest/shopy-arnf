@@ -13,13 +13,15 @@ import {normalize} from '../theme/metrics';
 
 export interface IModalBase {
   isModalVisible?: boolean;
-  toggleModal: () => void;
+  toggleModal?: () => void;
   children: React.ReactNode;
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle: string | React.ReactNode | any;
   hasModalImage?: boolean;
   hasModalMiddleImage?: boolean;
   hasModalSmallImage?: boolean;
+  label? : string;
+  secondLabel?: string;
 }
 
 export const CustomModal: React.FC<IModalBase> = ({
@@ -31,6 +33,8 @@ export const CustomModal: React.FC<IModalBase> = ({
   hasModalImage = false,
   hasModalMiddleImage = false,
   hasModalSmallImage = false,
+  label,
+  secondLabel
 }) => {
   return (
     <Modal isVisible={isModalVisible} style={{alignSelf: 'center'}}>
@@ -46,11 +50,11 @@ export const CustomModal: React.FC<IModalBase> = ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
           {children}
-          <ButtonPrimary modalButton label="Sure" onPress={toggleModal} />
+          <ButtonPrimary modalButton label={label} onPress={toggleModal} />
           <ButtonTransparent
             modalButton
-            label="No, thanks"
-            onPress={toggleModal}></ButtonTransparent>
+            label={secondLabel}
+            onPress={toggleModal}/>
         </View>
       </View>
     </Modal>

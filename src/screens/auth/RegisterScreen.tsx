@@ -12,7 +12,10 @@ import { TextLink } from '../../components/TextLink';
 import { TypographyStyles } from '../../theme/typography';
 import { CommonStyles } from '../../theme/common.styles';
 import { normalize } from '../../theme/metrics';
+import { Dimensions } from 'react-native';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 export const RegisterScreen: React.FC<
@@ -28,7 +31,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
   return (
     <ScrollView scrollEnabled={false}>
       <View style={styles.container}>
-        <View >
+        <View style={styles.navbar}>
       <NavBars size='standard' backStyle='single' iconLeft onPress={navigateToWelcome}/>
       <NavBars size='large' backStyle='single' largeTitle='CREATE ACCOUNT'/>
       </View>
@@ -64,10 +67,9 @@ const styles = StyleSheet.create({
   textLink:{
     ...TypographyStyles.SmallNormalRegular,
     flex:1,
-    width:'100%',
-    height:'100%',
-    paddingBottom:'100%',
-    marginTop:-90,
+    width: '100%', 
+    height: windowHeight,
+    marginTop:-80,
     bottom:0,
     alignSelf:'center'
 
@@ -76,4 +78,7 @@ const styles = StyleSheet.create({
     flex:1,
     gap:194
   },
+  navbar:{
+    marginLeft:24
+  }
 })
