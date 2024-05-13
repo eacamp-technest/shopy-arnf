@@ -89,15 +89,8 @@ export const WelcomeScreen: React.FC<
 
   return (
     <View style={styles.root}>
-      <Button title="Show modal" onPress={toggleModal} />
-      <CustomModal
-        title="REMOVE ITEM?"
-        subtitle="Are you sure want to remove this item from your cart?"
-        isModalVisible={isModalVisible}
-        toggleModal={toggleModal}
-        hasModalMiddleImage={true}></CustomModal>
 
-      {/* <FlatList
+      <FlatList
         data={onboarding}
         initialScrollIndex={0}
         horizontal
@@ -106,7 +99,7 @@ export const WelcomeScreen: React.FC<
         showsHorizontalScrollIndicator={false}
         renderItem={renderItem}
         style={CommonStyles.flex}
-      /> */}
+      />
     </View>
   );
 };
