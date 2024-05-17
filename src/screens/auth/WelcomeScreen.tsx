@@ -19,8 +19,7 @@ import {normalize} from '../../theme/metrics';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
-import {CustomModal} from '../../components/CustomModal';
-import {TextInputs} from '../../components/TextInputs';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 type OnboardingItem = {
   id: number;
@@ -38,11 +37,14 @@ export const WelcomeScreen: React.FC<
   const navigateToRegister = () => {
     navigation.navigate(Routers.register);
   };
+  const enableSafeArea = false; 
+
   const renderItem = ({item}: {item: OnboardingItem}) => {
     return (
       <View style={styles.background}>
         <Text style={styles.title}>Shoppay</Text>
         {item.id === 0 ? <View style={styles.round} /> : null}
+        
         <Image
           source={item.image}
           resizeMode={item.id === 0 ? 'cover' : 'contain'}
@@ -80,6 +82,7 @@ export const WelcomeScreen: React.FC<
           </View>
         ) : null}
       </View>
+    
     );
   };
 
@@ -88,19 +91,34 @@ export const WelcomeScreen: React.FC<
   };
 
   return (
-    <View style={styles.root}>
-
-      <FlatList
-        data={onboarding}
-        initialScrollIndex={0}
-        horizontal
-        pagingEnabled
-        initialNumToRender={1}
-        showsHorizontalScrollIndicator={false}
-        renderItem={renderItem}
-        style={CommonStyles.flex}
-      />
+     <View style={styles.root}>
+      {enableSafeArea ? (
+        <SafeAreaView style={styles.root}>
+          <FlatList
+            data={onboarding}
+            initialScrollIndex={0}
+            horizontal
+            pagingEnabled
+            initialNumToRender={1}
+            showsHorizontalScrollIndicator={false}
+            renderItem={renderItem}
+            style={CommonStyles.flex}
+          />
+        </SafeAreaView>
+      ) : (
+        <FlatList
+          data={onboarding}
+          initialScrollIndex={0}
+          horizontal
+          pagingEnabled
+          initialNumToRender={1}
+          showsHorizontalScrollIndicator={false}
+          renderItem={renderItem}
+          style={CommonStyles.flex}
+        />
+      )}
     </View>
+    
   );
 };
 

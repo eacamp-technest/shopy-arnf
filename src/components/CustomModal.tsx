@@ -22,6 +22,7 @@ export interface IModalBase {
   hasModalSmallImage?: boolean;
   label? : string;
   secondLabel?: string;
+  onPress?: () => void
 }
 
 export const CustomModal: React.FC<IModalBase> = ({
@@ -34,12 +35,13 @@ export const CustomModal: React.FC<IModalBase> = ({
   hasModalMiddleImage = false,
   hasModalSmallImage = false,
   label,
-  secondLabel
+  secondLabel,
+  onPress
 }) => {
   return (
     <Modal isVisible={isModalVisible} style={{alignSelf: 'center'}}>
       <View style={styles.generalView}>
-        {hasModalImage && <ModalImage />}
+        {hasModalImage ? <ModalImage />: null}
         {hasModalMiddleImage && (
           <ModalMiddleImage style={styles.modalMiddleImage} />
         )}
@@ -50,7 +52,7 @@ export const CustomModal: React.FC<IModalBase> = ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
           {children}
-          <ButtonPrimary modalButton label={label} onPress={toggleModal} />
+          <ButtonPrimary modalButton label={label} onPress={onPress} />
           <ButtonTransparent
             modalButton
             label={secondLabel}

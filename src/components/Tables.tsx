@@ -15,7 +15,7 @@ interface ITables {
   right?: string | React.ReactNode;
 }
 
-function renderRight(value: string, right) {
+function renderRight(value: string, right:string | React.ReactNode) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   switch (value) {
@@ -45,7 +45,7 @@ function renderRight(value: string, right) {
       break;
   }
 }
-function renderLeft(value: string, left) {
+function renderLeft(value: string, left:any) {
   switch (value) {
     case 'image':
       return <Image source={left} style={styles.image} />;
