@@ -12,12 +12,16 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
 import { CustomModal } from '../../components/CustomModal';
+import { PaymentMethodScreen } from './PaymentMethodScreen';
 
 export const VerificationScreen: React.FC<
-  NativeStackScreenProps<NavigationParamlist, Routers.register>
+  NativeStackScreenProps<NavigationParamlist, Routers.verification>
 > = ({navigation}) => {
   const navigateToRegister = () => {
     navigation.navigate(Routers.register);
+  };
+  const navigateToPaymentMethod = () => {
+    navigation.navigate(Routers.paymentMethod);
   };
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -78,6 +82,8 @@ export const VerificationScreen: React.FC<
         toggleModal={toggleModal}
         label='Agree and continue'
         secondLabel='Disagree and close'
+        children
+        onPress={navigateToPaymentMethod}
         />
     </View>
   );

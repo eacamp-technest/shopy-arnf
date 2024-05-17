@@ -13,6 +13,7 @@ import MapPin from '../../assets/vectors/map-pin.svg';
 import {TypographyStyles} from '../theme/typography';
 import {colors} from '../theme/colors';
 import {normalize} from '../theme/metrics';
+import { ButtonPrimary } from './ButtonPrimary';
 
 interface ITextInput {
   textLabel?: string;
@@ -22,6 +23,7 @@ interface ITextInput {
   disabled?: boolean;
   leftIcon?: React.ReactNode;
   righticon?: React.ReactNode;
+  onChangeText?: any
 }
 
 export const TextInputs: React.FC<ITextInput> = ({
@@ -32,6 +34,7 @@ export const TextInputs: React.FC<ITextInput> = ({
   disabled,
   leftIcon,
   righticon,
+  onChangeText
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [text, setText] = useState('');

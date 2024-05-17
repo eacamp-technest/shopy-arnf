@@ -60,9 +60,7 @@ export const NavBars: React.FC<IBars> = ({
         </View>
         <Text style={styles.title}>{smallTitle}</Text>
         <Pressable onPress={onPress}>
-          {iconRight ? <Settings color={colors.ink.darkest} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}/> 
-          : null}
-
+          {iconRight}
         </Pressable>
       </View>
       <View style={[styles.navBar, styles[size]]}>

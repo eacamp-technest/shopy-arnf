@@ -1,4 +1,4 @@
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, Text} from 'react-native';
 import React from 'react';
 import { NavBars } from '../../components/bars/NavBars';
 import ChevronLeft from '../../../assets/vectors/chevron-left.svg'
@@ -21,13 +21,14 @@ const windowHeight = Dimensions.get('window').height;
 export const RegisterScreen: React.FC<
 NativeStackScreenProps<NavigationParamlist, Routers.register>
 > = ({navigation}) => {
-
+  
   const navigateToWelcome = () => {
     navigation.navigate(Routers.welcome);
   };
   const navigateToVerification = () => {
     navigation.navigate(Routers.verification);
   };
+
   return (
     <ScrollView scrollEnabled={false}>
       <View style={styles.container}>
@@ -35,9 +36,9 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
       <NavBars size='standard' backStyle='single' iconLeft onPress={navigateToWelcome}/>
       <NavBars size='large' backStyle='single' largeTitle='CREATE ACCOUNT'/>
       </View>
-      <TextInputs textLabel='Full name' placeholder='Enter your name'/>
-      <TextInputs textLabel='Email' placeholder='Enter your email'/>
-      <TextInputs textLabel='Password' placeholder='Enter your password'/>
+      <TextInputs textLabel='Full name' placeholder='Enter your name' />
+      <TextInputs textLabel='Email' placeholder='Enter your email' />
+      <TextInputs textLabel='Password' placeholder='Enter your password' />
       </View>
       <View style={styles.button}>
       <ButtonPrimary label='Create an account' primaryBlock onPress={navigateToVerification}/>

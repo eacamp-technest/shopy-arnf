@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
     alignSelf:'center',
   },
   navbar:{
-    marginLeft:-30
+    marginLeft:-24
   }
 })
