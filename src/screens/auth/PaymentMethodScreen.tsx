@@ -20,7 +20,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.paymentMethod>
 
   return (
     <View>
-       <NavBars leftIcon size='standard'  button={<ButtonTransparent label='skip'/>}/>
+       <NavBars leftIcon leftPress={navigateToVerification} size='standard' button={<ButtonTransparent label='Skip'/>}/>
       <Tables
         content="Content is here"
         rightType={'switch'}

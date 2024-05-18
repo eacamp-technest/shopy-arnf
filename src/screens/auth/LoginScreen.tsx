@@ -47,7 +47,6 @@ NativeStackScreenProps<NavigationParamlist, Routers.login>
             callback: () => navigation.navigate(Routers.register)
           }
         ]}/>
-       
         </View>
         </View>
       </View>
