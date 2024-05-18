@@ -3,19 +3,18 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Pressable,
-  Image,
-  ImageProps,
+  Pressable
 } from 'react-native';
 import React, {useState} from 'react';
-import SvgImage from 'react-native-svg/lib/typescript/elements/Image';
 import MapPin from '../../assets/vectors/map-pin.svg';
 import {TypographyStyles} from '../theme/typography';
 import {colors} from '../theme/colors';
 import {normalize} from '../theme/metrics';
-import { ButtonPrimary } from './ButtonPrimary';
+import EyeOff from '../../assets/vectors/eye-off.svg';
+import Eye from '../../assets/vectors/eye.svg';
 
 interface ITextInput {
+  type?: 'text' | 'phone' | 'password' | 'select';
   textLabel?: string;
   placeholder: string;
   caption?: string;
@@ -28,17 +27,16 @@ interface ITextInput {
 
 export const TextInputs: React.FC<ITextInput> = ({
   placeholder,
-  textLabel,
+  textLabel='Password',
   caption,
   errorMessage,
   disabled,
   leftIcon,
-  righticon,
-  onChangeText
+  type='text'
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [text, setText] = useState('');
-
+  const [secureTextEntry, setSecureTextEntry] = useState<boolean>(false);
   const handleFocus = () => {
     if (!disabled) {
       setIsFocused(true);
@@ -48,7 +46,7 @@ export const TextInputs: React.FC<ITextInput> = ({
   const handleBlur = () => {
     setIsFocused(false);
   };
-
+if (type!=='password'){
   return (
     <View>
       <View style={styles.root}>
@@ -62,6 +60,7 @@ export const TextInputs: React.FC<ITextInput> = ({
             disabled ? styles.disabled : null,
           ]}>
           <View style={styles.placeholder}>
+          
             {leftIcon ? <MapPin /> : null}
             <TextInput
               onFocus={handleFocus}
@@ -72,6 +71,7 @@ export const TextInputs: React.FC<ITextInput> = ({
               editable={!disabled}
               placeholderTextColor={colors.ink.lighter}
               autoCapitalize="none"
+              secureTextEntry={secureTextEntry}
             />
           </View>
         </View>
@@ -82,6 +82,55 @@ export const TextInputs: React.FC<ITextInput> = ({
       </View>
     </View>
   );
+} 
+else {
+  return(
+  <View>
+  <View style={styles.root}>
+    <Text style={styles.text}>{textLabel}</Text>
+    <View
+      style={[
+        styles.inputContainer,
+        isFocused && !disabled ? styles.focused : null,
+        text !== '' ? styles.filled : null,
+        errorMessage ? styles.error : null,
+        disabled ? styles.disabled : null,
+      ]}>
+      <View style={styles.placeholder}>
+        {leftIcon ? <MapPin /> : null}
+        <View style={{flex: 1}}>
+        <TextInput
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChangeText={newText => setText(newText)}
+          defaultValue={text}
+          placeholder={placeholder}
+          editable={!disabled}
+          placeholderTextColor={colors.ink.lighter}
+          autoCapitalize="none"
+          secureTextEntry={secureTextEntry}
+        />
+      </View>
+      <View style={{padding:16}}>
+      <Pressable>
+            {
+              secureTextEntry
+                ? <EyeOff  color={colors.ink.base} width={24} height={24}
+                onPress={() => setSecureTextEntry(state => !state)}/>
+                : <Eye color={colors.ink.base} width={24} height={24} onPress={() => setSecureTextEntry(state => !state)}/>
+            }
+      </Pressable>
+      </View>
+      </View>
+    </View>
+    <Text style={styles.caption}>{caption}</Text>
+    {errorMessage ? (
+      <Text style={styles.errorMessage}>{errorMessage}</Text>
+    ) : null}
+  </View>
+</View>
+)
+}
 };
 
 const styles = StyleSheet.create({

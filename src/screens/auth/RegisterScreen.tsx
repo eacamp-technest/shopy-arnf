@@ -31,17 +31,16 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
   };
 
   return (
-    <ScrollView scrollEnabled={false}>
+    <ScrollView scrollEnabled={false} >
       <View style={styles.container}>
       <NavBars leftIcon size='standard' leftPress={navigateToWelcome}/>
       <NavBars largeTitle='Create Account' size='large'/>
       <TextInputs textLabel='Full name' placeholder='Enter your name' />
       <TextInputs textLabel='Email' placeholder='Enter your email' />
-      <TextInputs textLabel='Password' placeholder='Enter your password' />
+      <TextInputs textLabel='Password' placeholder='Enter your password' type='password'/>
       </View>
-      <View style={styles.button}>
+      <View style={styles.footer}>
       <ButtonPrimary label='Create an account' primaryBlock onPress={navigateToVerification}/>
-      <View style={styles.textLink}>
       <TextLink content='By signing up you agree to our Terms and Conditions of Use' center
         highlighted={[
           {
@@ -54,7 +53,6 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
           },
         ]}/>
        
-        </View>
       </View>
      </ScrollView>
   );
@@ -62,23 +60,14 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
 
 const styles = StyleSheet.create({
   container:{
-    gap:24
+    gap: 24,
   },
   textLink:{
     ...TypographyStyles.SmallNormalRegular,
-    flex:1,
-    width: '100%', 
-    height: windowHeight,
-    marginTop:-80,
-    bottom:0,
-    alignSelf:'center'
 
   },
-  button:{
-    flex:1,
-    gap:194
-  },
-  navbar:{
-    marginLeft:24
+  footer:{
+    flex: 1,
+    gap:98
   }
 })
