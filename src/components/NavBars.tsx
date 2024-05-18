@@ -42,7 +42,7 @@ export const NavBars:React.FC<INavBar> = ({leftIcon,rightIcon,rightPress,leftPre
   } 
   else if(size ==='standard'){
     return(
-      <View style={[styles.standard,button && !title ? styles.withButton:null]}> 
+      <View style={[styles.standard,button && !title ? styles.withButton:null, size==='standard' && !button && !rightIcon? styles.singleTitle : null]}> 
         {leftIcon?<ChevronLeft onPress={leftPress} hitSlop={{right:12,left:12,top:12,bottom:12}}/>:button}
         <Text style={styles.title}>{title}</Text>
         {rightIcon?<Settings onPress={rightPress} color={colors.ink.base} hitSlop={{right:12,left:12,top:12,bottom:12}}/> : button}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between',
-    gap:120
+    gap:40
   },
   settings:{
     flexDirection:'row',
@@ -90,11 +90,14 @@ const styles = StyleSheet.create({
     marginTop:2
   },
   withButton:{
-    gap:85
+    gap:120
   },
   large:{
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between',
+  },
+  singleTitle:{
+    marginRight:120
   }
 })
