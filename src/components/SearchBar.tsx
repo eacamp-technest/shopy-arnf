@@ -1,11 +1,11 @@
 import { View, Text,TextInput, StyleSheet, Pressable } from 'react-native'
 import React,{useState} from 'react'
-import Search from '../../../assets/vectors/search.svg'
-import Close from '../../../assets/vectors/close.svg'
-import Microfon from '../../../assets/vectors/mic.svg'
-import { colors } from '../../theme/colors'
-import { CommonStyles } from '../../theme/common.styles'
-import { TypographyStyles } from '../../theme/typography'
+import Search from '../../assets/vectors/search.svg'
+import Close from '../../assets/vectors/close.svg'
+import Microfon from '../../assets/vectors/mic.svg'
+import { colors } from '../theme/colors'
+import { CommonStyles } from '../theme/common.styles'
+import { TypographyStyles } from '../theme/typography'
 
 type TSearch = 'normal' | 'transparent'
 
