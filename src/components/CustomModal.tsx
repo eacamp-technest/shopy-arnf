@@ -8,7 +8,6 @@ import {ButtonTransparent} from './ButtonTransparent';
 import ModalImage from '../../assets/vectors/modalImage.svg';
 import ModalMiddleImage from '../../assets/vectors/modalMiddleImage.svg';
 import ModalSmallImage from '../../assets/vectors/modalSmallImage.svg';
-import {ScrollView} from 'react-native-gesture-handler';
 import {normalize} from '../theme/metrics';
 
 export interface IModalBase {
@@ -22,6 +21,7 @@ export interface IModalBase {
   hasModalSmallImage?: boolean;
   label?: string;
   secondLabel?: string;
+  onPress?: () => void;
 }
 
 export const CustomModal: React.FC<IModalBase> = ({
@@ -35,6 +35,7 @@ export const CustomModal: React.FC<IModalBase> = ({
   hasModalSmallImage = false,
   label,
   secondLabel,
+  onPress,
 }) => {
   return (
     <Modal isVisible={isModalVisible} style={{alignSelf: 'center'}}>
@@ -50,7 +51,7 @@ export const CustomModal: React.FC<IModalBase> = ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
           {children}
-          <ButtonPrimary modalButton label={label} onPress={toggleModal} />
+          <ButtonPrimary modalButton label={label} onPress={onPress} />
           <ButtonTransparent
             modalButton
             label={secondLabel}
