@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Pressable, ViewStyle} from 'react-native';
+import {View, Text, StyleSheet, Pressable, ViewStyle, StyleProp} from 'react-native';
 import React, {useMemo, useState} from 'react';
 import {colors} from '../theme/colors';
 import {TypographyStyles} from '../theme/typography';
@@ -18,6 +18,9 @@ export interface IButtonPrimary {
   primaryLarge?: boolean;
   primarySmall?: boolean;
   modalButton?: boolean;
+  style?: StyleProp<ViewStyle>;
+  showArrowSign?: boolean;
+  showMessageSign?: boolean;
 }
 
 export const ButtonPrimary: React.FC<IButtonPrimary> = ({
@@ -34,6 +37,7 @@ export const ButtonPrimary: React.FC<IButtonPrimary> = ({
   primaryLarge,
   primarySmall,
   modalButton,
+  style
 }) => {
   const [pressing, setPressing] = useState(false);
 
@@ -50,6 +54,7 @@ export const ButtonPrimary: React.FC<IButtonPrimary> = ({
           disabled && styles.disabled,
           customStyles,
           centered && styles.centered,
+          style
         ];
       }}
       disabled={disabled}

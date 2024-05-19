@@ -1,8 +1,6 @@
-import {View, StyleSheet, ScrollView, ViewBase, Text} from 'react-native';
+import {View, StyleSheet, ScrollView, Text} from 'react-native';
 import React from 'react';
-import { NavBars } from '../../components/bars/NavBars';
-import ChevronLeft from '../../../assets/vectors/chevron-left.svg'
-import ArrowRight from '../../../assets/vectors/arrow-right.svg'
+import { NavBars } from '../../components/NavBars';
 import { colors } from '../../theme/colors';
 import { TextInputs } from '../../components/TextInputs';
 import { ButtonPrimary } from '../../components/ButtonPrimary';
@@ -16,6 +14,7 @@ import { normalize } from '../../theme/metrics';
 import FacebookIcon from '../../../assets/vectors/facebookIcon.svg'
 import TwitterIcon from '../../../assets/vectors/twitterIcon.svg'
 import GoogleIcon from '../../../assets/vectors/googleIcon.svg'
+import { RegisterScreen } from './RegisterScreen';
 
 export const LoginScreen: React.FC<
 NativeStackScreenProps<NavigationParamlist, Routers.login>
@@ -27,14 +26,8 @@ NativeStackScreenProps<NavigationParamlist, Routers.login>
   return (
     <ScrollView scrollEnabled={false} style={CommonStyles.flex}>
         <View style={styles.container}>
-            <View style={styles.navbar}>
-        <View style={styles.smallnavbar}>
-      <NavBars size='standard' backStyle='single' iconLeft  onPress={navigateToWelcome} />
-      <View style={styles.largeNavbar}>
-      <NavBars size='large' largeTitle='WELCOME!' backStyle='single'/>
-      </View>
-      </View>
-        </View>
+          <NavBars size='standard' leftIcon leftPress={navigateToWelcome}/>
+          <NavBars size='large' largeTitle='Welcome!' leftPress={navigateToWelcome}/>
       <TextInputs textLabel='Email' placeholder='Enter your email'/>
       <TextInputs textLabel='Password' placeholder='Enter your password'/>
       </View>
@@ -48,13 +41,12 @@ NativeStackScreenProps<NavigationParamlist, Routers.login>
             <TwitterIcon />
         </View>
         <View style={styles.textLink}>
-      <TextLink content='Already have an account? Log in' center highlighted={[
+      <TextLink content="Don't have an account? Sign Up" center highlighted={[
           {
-            text: 'Log in',
-            callback: () => console.log('terms')
+            text: 'Sign Up',
+            callback: () => navigation.navigate(Routers.register)
           }
         ]}/>
-       
         </View>
         </View>
       </View>
@@ -103,6 +95,6 @@ const styles = StyleSheet.create({
     alignSelf:'center',
   },
   navbar:{
-    marginLeft:-30
+    marginLeft:-24
   }
 })

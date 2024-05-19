@@ -1,6 +1,5 @@
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, Text} from 'react-native';
 import React from 'react';
-import { NavBars } from '../../components/bars/NavBars';
 import ChevronLeft from '../../../assets/vectors/chevron-left.svg'
 import { colors } from '../../theme/colors';
 import { TextInputs } from '../../components/TextInputs';
@@ -13,6 +12,8 @@ import { TypographyStyles } from '../../theme/typography';
 import { CommonStyles } from '../../theme/common.styles';
 import { normalize } from '../../theme/metrics';
 import { Dimensions } from 'react-native';
+import { NavBars } from '../../components/NavBars';
+import { ButtonTransparent } from '../../components/ButtonTransparent';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -21,27 +22,25 @@ const windowHeight = Dimensions.get('window').height;
 export const RegisterScreen: React.FC<
 NativeStackScreenProps<NavigationParamlist, Routers.register>
 > = ({navigation}) => {
-
+  
   const navigateToWelcome = () => {
     navigation.navigate(Routers.welcome);
   };
   const navigateToVerification = () => {
     navigation.navigate(Routers.verification);
   };
+
   return (
-    <ScrollView scrollEnabled={false}>
+    <ScrollView scrollEnabled={false} >
       <View style={styles.container}>
-        <View style={styles.navbar}>
-      <NavBars size='standard' backStyle='single' iconLeft onPress={navigateToWelcome}/>
-      <NavBars size='large' backStyle='single' largeTitle='CREATE ACCOUNT'/>
+      <NavBars leftIcon size='standard' leftPress={navigateToWelcome}/>
+      <NavBars largeTitle='Create Account' size='large'/>
+      <TextInputs textLabel='Full name' placeholder='Enter your name' />
+      <TextInputs textLabel='Email' placeholder='Enter your email' />
+      <TextInputs textLabel='Password' placeholder='Enter your password' type='password'/>
       </View>
-      <TextInputs textLabel='Full name' placeholder='Enter your name'/>
-      <TextInputs textLabel='Email' placeholder='Enter your email'/>
-      <TextInputs textLabel='Password' placeholder='Enter your password'/>
-      </View>
-      <View style={styles.button}>
+      <View style={styles.footer}>
       <ButtonPrimary label='Create an account' primaryBlock onPress={navigateToVerification}/>
-      <View style={styles.textLink}>
       <TextLink content='By signing up you agree to our Terms and Conditions of Use' center
         highlighted={[
           {
@@ -54,7 +53,6 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
           },
         ]}/>
        
-        </View>
       </View>
      </ScrollView>
   );
@@ -62,23 +60,14 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
 
 const styles = StyleSheet.create({
   container:{
-    gap:24
+    gap: 24,
   },
   textLink:{
     ...TypographyStyles.SmallNormalRegular,
-    flex:1,
-    width: '100%', 
-    height: windowHeight,
-    marginTop:-80,
-    bottom:0,
-    alignSelf:'center'
 
   },
-  button:{
-    flex:1,
-    gap:194
-  },
-  navbar:{
-    marginLeft:24
+  footer:{
+    flex: 1,
+    gap:98
   }
 })
