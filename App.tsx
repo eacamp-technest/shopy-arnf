@@ -5,8 +5,6 @@ import Router from './src/router/router';
 import {SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
-
-
 function App(): React.JSX.Element {
   useEffect(() => {
     SplashScreen.hide();
