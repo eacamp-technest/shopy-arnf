@@ -1,6 +1,5 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {TestScreen} from '../screens/auth/TestScreen';
 import {Routers} from './routers';
 import {NavigationParamlist} from '../types/navigatorTypes';
 

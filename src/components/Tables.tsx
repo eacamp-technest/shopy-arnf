@@ -15,7 +15,7 @@ interface ITables {
   right?: string | React.ReactNode;
 }
 
-function renderRight(value: string, right:string | React.ReactNode) {
+function renderRight(value: string, right: string | React.ReactNode) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   switch (value) {
@@ -45,7 +45,7 @@ function renderRight(value: string, right:string | React.ReactNode) {
       break;
   }
 }
-function renderLeft(value: string, left:any) {
+function renderLeft(value: string, left: any) {
   switch (value) {
     case 'image':
       return <Image source={left} style={styles.image} />;
@@ -74,7 +74,7 @@ export const Tables: React.FC<ITables> = ({
           </Text>
         )}
       </View>
-      <Pressable style={[styles.rigthContainer, !rightType && styles.hide]}>
+      <Pressable style={[styles.rightContainer, !rightType && styles.hide]}>
         {renderRight(rightType, right) || null}
       </Pressable>
     </View>
@@ -84,12 +84,12 @@ export const Tables: React.FC<ITables> = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: normalize('vertical', 22),
+    paddingVertical: normalize('vertical', 15),
   },
   contentStyle: {
-    ...TypographyStyles.RegularTightRegular,
+    ...TypographyStyles.RegularNoneSemiBold,
     color: colors.ink.darkest,
   },
   rightStyle: {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   hide: {
     opacity: 0,
   },
-  rigthContainer: {
+  rightContainer: {
     alignItems: 'flex-end',
     flex: 0.5,
   },

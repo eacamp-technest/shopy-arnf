@@ -7,4 +7,5 @@ export enum Routers {
   verification = 'verification',
   paymentMethod = 'paymentMethod',
   test = 'test',
+  newCard = 'newCard',
 }

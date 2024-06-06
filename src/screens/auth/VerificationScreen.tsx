@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet} from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {OtpInput} from 'react-native-otp-entry';
 import {colors} from '../../theme/colors';
 import {Svg} from 'react-native-svg';
@@ -10,9 +10,9 @@ import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
-import { CustomModal } from '../../components/CustomModal';
-import { PaymentMethodScreen } from './PaymentMethodScreen';
-import { NavBars } from '../../components/NavBars';
+import {CustomModal} from '../../components/CustomModal';
+import {PaymentMethodScreen} from './PaymentMethodScreen';
+import {NavBars} from '../../components/NavBars';
 
 export const VerificationScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.verification>
@@ -31,25 +31,25 @@ export const VerificationScreen: React.FC<
   return (
     <View>
       <View style={styles.root}>
-      <View style={styles.navbar}>
-      <NavBars size='standard' leftIcon leftPress={navigateToRegister}/>
-      <NavBars size='large' largeTitle='enter sms code'/>
-      </View>
-      <OtpInput
-        onFilled={text => console.log(`OTP is ${text}`)}
-        numberOfDigits={4}
-        focusColor={colors.primary.base}
-        theme={{
-          pinCodeContainerStyle: {
-            width: 48,
-            height: 48,
-          },
-          containerStyle: {
-            gap: 24,
-            paddingHorizontal: 54,
-          },
-        }}
-      />
+        <View style={styles.navbar}>
+          <NavBars size="standard" leftIcon leftPress={navigateToRegister} />
+          <NavBars size="large" largeTitle="enter sms code" />
+        </View>
+        <OtpInput
+          onFilled={text => console.log(`OTP is ${text}`)}
+          numberOfDigits={4}
+          focusColor={colors.primary.base}
+          theme={{
+            pinCodeContainerStyle: {
+              width: 48,
+              height: 48,
+            },
+            containerStyle: {
+              gap: 24,
+              paddingHorizontal: 54,
+            },
+          }}
+        />
       </View>
       <TextLink
         content="Didn’t receive code? Resend Code"
@@ -64,20 +64,26 @@ export const VerificationScreen: React.FC<
         centered
         primaryBlock
       />
-       <CustomModal
-        subtitle= {<TextLink content='I agree to the Terms of Service and Conditions of Use including consent to electronic communications and I affirm that the information provided is my own.' center highlighted={[
-          {
-            text: 'Terms of Service and Conditions',
-            callback: () => console.log('terms')
-          }
-        ]}/>}
+      <CustomModal
+        subtitle={
+          <TextLink
+            content="I agree to the Terms of Service and Conditions of Use including consent to electronic communications and I affirm that the information provided is my own."
+            center
+            highlighted={[
+              {
+                text: 'Terms of Service and Conditions',
+                callback: () => console.log('terms'),
+              },
+            ]}
+          />
+        }
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
-        label='Agree and continue'
-        secondLabel='Disagree and close'
+        label="Agree and continue"
+        secondLabel="Disagree and close"
         children
         onPress={navigateToPaymentMethod}
-        />
+      />
     </View>
   );
 };
@@ -89,10 +95,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingVertical: 32,
   },
-  navbar:{
-    gap:24
+  navbar: {
+    gap: 24,
   },
-  root:{
-    gap:16
-  }
+  root: {
+    gap: 16,
+  },
 });
