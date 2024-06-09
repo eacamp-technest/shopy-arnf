@@ -30,7 +30,7 @@ export const SearchBar:React.FC<ISearch> = ({searchType}) => {
   return (
     <View >
       <View style={[CommonStyles.alignCenterRow,styles.focused]}>
-        <View style={[isFocused && searchType=== 'normal' ? styles.focusedNormal : styles[searchType]]}>
+        <View style={[isFocused ? searchType=== 'normal' ? styles.focusedNormal : styles[searchType]:null]}>
           <View style={styles.searchBar}>
             {searchType === 'transparent' ?<Search style={styles.transparentIcon}/> : <Search style={styles.normalIcon}/>}
           <TextInput 

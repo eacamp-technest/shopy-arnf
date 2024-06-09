@@ -1,5 +1,5 @@
 import Modal from 'react-native-modal';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import {TypographyStyles} from '../theme/typography';
 import {colors} from '../theme/colors';
@@ -8,7 +8,6 @@ import {ButtonTransparent} from './ButtonTransparent';
 import ModalImage from '../../assets/vectors/modalImage.svg';
 import ModalMiddleImage from '../../assets/vectors/modalMiddleImage.svg';
 import ModalSmallImage from '../../assets/vectors/modalSmallImage.svg';
-import {ScrollView} from 'react-native-gesture-handler';
 import {normalize} from '../theme/metrics';
 
 export interface IModalBase {
@@ -42,12 +41,12 @@ export const CustomModal: React.FC<IModalBase> = ({
     <Modal isVisible={isModalVisible} style={{alignSelf: 'center'}}>
       <View style={styles.generalView}>
         {hasModalImage ? <ModalImage />: null}
-        {hasModalMiddleImage && (
+        {hasModalMiddleImage ? (
           <ModalMiddleImage style={styles.modalMiddleImage} />
-        )}
-        {hasModalSmallImage && (
+        ):null}
+        {hasModalSmallImage ? (
           <ModalSmallImage style={styles.modalSmallImage} />
-        )}
+        ):null}
         <View style={styles.buttonView}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>

@@ -68,13 +68,13 @@ export const Tables: React.FC<ITables> = ({
       </Pressable>
       <View>
         <Text style={styles.contentStyle}>{content}</Text>
-        {caption && (
+        {caption ? (
           <Text style={(styles.contentStyle, {color: colors.ink.lighter})}>
             {caption}
           </Text>
-        )}
+        ):null}
       </View>
-      <Pressable style={[styles.rigthContainer, !rightType && styles.hide]}>
+      <Pressable style={[styles.rigthContainer, !rightType ? styles.hide:null]}>
         {renderRight(rightType, right) || null}
       </Pressable>
     </View>
