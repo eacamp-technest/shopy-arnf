@@ -57,6 +57,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.login>
 const styles = StyleSheet.create({
     container:{
         gap:24,
+        marginTop:normalize('vertical',54)
     },
   smallnavbar:{
     alignSelf:'center',
