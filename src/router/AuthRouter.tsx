@@ -11,7 +11,6 @@ import {
   authScreenOptions,
   defaultScreenOptions,
 } from '../configs/navigationConfigs';
-import {SafeAreaView} from 'react-native';
 import {Edges} from 'react-native-safe-area-context';
 
 const AuthStack = createNativeStackNavigator<NavigationParamlist>();

@@ -1,187 +1,180 @@
 import {
   View,
   Text,
-  TextInput,
   StyleSheet,
-  Pressable
+  TextInput,
+  KeyboardTypeOptions,
+  StyleProp,
+  ViewStyle,
+  Pressable,
 } from 'react-native';
-import React, {useState} from 'react';
-import MapPin from '../../assets/vectors/map-pin.svg';
-import {TypographyStyles} from '../theme/typography';
-import {colors} from '../theme/colors';
-import {normalize} from '../theme/metrics';
+import React, {useMemo, useState} from 'react';
+import { TypographyStyles } from '../theme/typography';
+import { colors } from '../theme/colors';
+import { CommonStyles } from '../theme/common.styles';
 import EyeOff from '../../assets/vectors/eye-off.svg';
 import Eye from '../../assets/vectors/eye.svg';
 
-interface ITextInput {
+type TIcon = {
+  source: NodeRequire;
+  color?: string;
+  width?: number;
+  height?: number;
+  position?: 'left' | 'right';
+};
+
+export interface ITextInput {
   type?: 'text' | 'phone' | 'password' | 'select';
-  textLabel?: string;
-  placeholder: string;
+  label?: string;
   caption?: string;
-  errorMessage?: string;
+  value?: string;
+  placeholder?: string;
   disabled?: boolean;
-  leftIcon?: React.ReactNode;
-  righticon?: React.ReactNode;
-  onChangeText?: any
+  keyboardType?: KeyboardTypeOptions;
+  icon?: TIcon | NodeRequire;
+  maxLength?: number;
+  errorMessage?: string;
+  style?: StyleProp<ViewStyle>;
+  setValue?: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  onInputPress?: () => void;
 }
 
 export const TextInputs: React.FC<ITextInput> = ({
-  placeholder,
-  textLabel='Password',
-  caption,
-  errorMessage,
-  disabled,
-  leftIcon,
-  type='text'
+  value,
+  type = 'text',
+  setValue,
+  icon,
+  ...props
 }) => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-  const [text, setText] = useState('');
-  const [secureTextEntry, setSecureTextEntry] = useState<boolean>(false);
-  const handleFocus = () => {
-    if (!disabled) {
-      setIsFocused(true);
+  const [focused, setFocused] = useState<boolean>(false);
+  const [secureTextEntry, setSecureTextEntry] = useState<boolean>(
+    type === 'password',
+  );
+
+  const isMoreIcon = useMemo(
+    () =>
+      ('position' in (icon ?? {}) ? (icon as TIcon)?.position === 'right' : null) ||
+      type === 'password',
+    [icon, type],
+  );
+
+  const isPressable = props.onInputPress instanceof Function;
+
+  const renderIcon = useMemo(() => {
+    if (type === 'password') {
+      return (
+        <Pressable hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }} onPress={() => setSecureTextEntry(state => !state)}>
+          {
+            secureTextEntry ?
+              <EyeOff color={colors.ink.base} width={24} height={24} /> : <Eye color={colors.ink.base} width={24} height={24} />
+          }
+        </Pressable>
+      );
+    }
+
+    if (!icon) {
+      return null;
+    }
+
+  }, [icon, props.disabled, secureTextEntry, type]);
+
+  const handleOnFocused = () => {
+    setFocused(true);
+    props?.onFocus?.();
+  };
+  const handleOnBlur = () => {
+    setFocused(false);
+    props?.onBlur?.();
+  };
+
+  const handleTextChange = (text: string) => {
+    if (setValue && typeof setValue === 'function') {
+      setValue(text);
     }
   };
 
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-if (type!=='password'){
   return (
-    <View>
-      <View style={styles.root}>
-        <Text style={styles.text}>{textLabel}</Text>
-        <View
-          style={[
-            styles.inputContainer,
-            isFocused && !disabled ? styles.focused : null,
-            text !== '' ? styles.filled : null,
-            errorMessage ? styles.error : null,
-            disabled ? styles.disabled : null,
-          ]}>
-          <View style={styles.placeholder}>
-          
-            {leftIcon ? <MapPin /> : null}
-            <TextInput
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              onChangeText={newText => setText(newText)}
-              defaultValue={text}
-              placeholder={placeholder}
-              editable={!disabled}
-              placeholderTextColor={colors.ink.lighter}
-              autoCapitalize="none"
-              secureTextEntry={secureTextEntry}
-            />
-          </View>
-        </View>
-        <Text style={styles.caption}>{caption}</Text>
-        {errorMessage ? (
-          <Text style={styles.errorMessage}>{errorMessage}</Text>
-        ) : null}
-      </View>
-    </View>
-  );
-} 
-else {
-  return(
-  <View>
-  <View style={styles.root}>
-    <Text style={styles.text}>{textLabel}</Text>
-    <View
-      style={[
-        styles.inputContainer,
-        isFocused && !disabled ? styles.focused : null,
-        text !== '' ? styles.filled : null,
-        errorMessage ? styles.error : null,
-        disabled ? styles.disabled : null,
-      ]}>
-      <View style={styles.placeholder}>
-        {leftIcon ? <MapPin /> : null}
-        <View style={{flex: 1}}>
+    <View style={[styles.root, props?.style]}>
+      {props.label ? (
+        <Text style={TypographyStyles.RegularNoneSemiBold}>{props.label}</Text>
+      ) : null}
+      <View
+        style={[
+          styles.wrapper,
+          focused ? styles.focused : null,
+          props.disabled ? styles.wrapperDisabled : null,
+          isMoreIcon ? CommonStyles.rowReverse : null,
+        ]}>
+        {renderIcon}
         <TextInput
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChangeText={newText => setText(newText)}
-          defaultValue={text}
-          placeholder={placeholder}
-          editable={!disabled}
-          placeholderTextColor={colors.ink.lighter}
+          placeholder={props.placeholder}
+          keyboardType={props.keyboardType}
+          value={value}
+          maxLength={props.maxLength}
+          onFocus={handleOnFocused}
+          onBlur={handleOnBlur}
+          onPressIn={props.onInputPress}
           autoCapitalize="none"
+          editable={!isPressable ?? !props.disabled}
           secureTextEntry={secureTextEntry}
+          onChangeText={handleTextChange} 
+          placeholderTextColor={
+            props.disabled ? colors.sky.base : colors.ink.lighter
+          }
+          style={styles.input}
         />
       </View>
-      <View style={{padding:16}}>
-      <Pressable>
-            {
-              secureTextEntry
-                ? <EyeOff  color={colors.ink.base} width={24} height={24}
-                onPress={() => setSecureTextEntry(state => !state)}/>
-                : <Eye color={colors.ink.base} width={24} height={24} onPress={() => setSecureTextEntry(state => !state)}/>
-            }
-      </Pressable>
-      </View>
-      </View>
+      {props.caption || props.errorMessage ? (
+        <Text
+          style={[
+            styles.caption,
+            props?.errorMessage ? styles.error : undefined,
+          ]}>
+          {props.errorMessage ?? props.caption}
+        </Text>
+      ) : null}
     </View>
-    <Text style={styles.caption}>{caption}</Text>
-    {errorMessage ? (
-      <Text style={styles.errorMessage}>{errorMessage}</Text>
-    ) : null}
-  </View>
-</View>
-)
-}
+  );
 };
+
 
 const styles = StyleSheet.create({
   root: {
-    flexDirection: 'column',
-    alignSelf: 'center',
     gap: 12,
   },
-  inputContainer: {
-    width: normalize('width', 327),
-    height: normalize('height', 48),
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.sky.light,
-    alignSelf: 'center',
+  focused: {
+    borderWidth: 2,
+    borderColor: colors.primary.base,
   },
-  placeholder: {
-    paddingLeft: 16,
-    gap: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
+  wrapperDisabled: {
+    backgroundColor: colors.sky.lighter,
+    borderColor: colors.sky.lighter,
+    color: colors.sky.base,
   },
-  text: {
-    ...TypographyStyles.RegularNoneSemiBold,
-    color: colors.ink.base,
+  error: {
+    color: colors.primary.base,
   },
   caption: {
     ...TypographyStyles.SmallNormalRegular,
     color: colors.ink.lighter,
   },
-  error: {
-    borderColor: colors.red.base,
-  },
-  focused: {
-    borderColor: colors.primary.base,
-  },
-  disabled: {
-    borderColor: colors.sky.lighter,
-    backgroundColor: colors.sky.lighter,
-  },
-  filled: {
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
     borderColor: colors.sky.light,
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    gap: 12,
+    height: 48,
   },
-  errorMessage: {
-    ...TypographyStyles.SmallNormalRegular,
-    color: colors.red.base,
-    marginTop: -24,
-  },
-  map: {
-    width: 24,
-    height: 24,
+  input: {
+    height: '100%',
+    flex: 1,
+    flexGrow: 1,
+    borderColor: 'red',
+    ...TypographyStyles.RegularNoneRegular,
   },
 });

@@ -1,8 +1,7 @@
 import {View, StyleSheet, ScrollView, Text} from 'react-native';
-import React from 'react';
+import React,{useRef} from 'react';
 import { NavBars } from '../../components/NavBars';
 import { colors } from '../../theme/colors';
-import { TextInputs } from '../../components/TextInputs';
 import { ButtonPrimary } from '../../components/ButtonPrimary';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
@@ -14,25 +13,62 @@ import { normalize } from '../../theme/metrics';
 import FacebookIcon from '../../../assets/vectors/facebookIcon.svg'
 import TwitterIcon from '../../../assets/vectors/twitterIcon.svg'
 import GoogleIcon from '../../../assets/vectors/googleIcon.svg'
-import { RegisterScreen } from './RegisterScreen';
+import { InputControlled } from '../../components/InputControlled';
+import { useForm } from 'react-hook-form';
+import { FormRules } from '../../constants/formRules';
+
+interface IRegisterForm {
+  email: string;
+  password: string;
+}
 
 export const LoginScreen: React.FC<
 NativeStackScreenProps<NavigationParamlist, Routers.login>
 > = ({navigation}) => {
-
+  const scrollRef = useRef<ScrollView>(null);
   const navigateToWelcome = () => {
     navigation.navigate(Routers.welcome);
   };
+  const navigateToVerification = () => {
+    navigation.navigate(Routers.verification);
+  };
+  const {
+    control,
+    handleSubmit,
+    formState: {errors, isSubmitting},
+  } = useForm<IRegisterForm>({
+    defaultValues: {
+      email: 'xeyyam.kerimov@gmail.com',
+      password: 'Admin123!',
+    },
+  });
+
+  const onSubmit = (data: IRegisterForm) => {
+   navigateToVerification();
+  };
   return (
-    <ScrollView scrollEnabled={false} style={CommonStyles.flex}>
+    <ScrollView scrollEnabled={false} style={CommonStyles.flex} ref={scrollRef}>
         <View style={styles.container}>
           <NavBars size='standard' leftIcon leftPress={navigateToWelcome}/>
           <NavBars size='large' largeTitle='Welcome!' leftPress={navigateToWelcome}/>
-      <TextInputs textLabel='Email' placeholder='Enter your email'/>
-      <TextInputs textLabel='Password' placeholder='Enter your password'/>
+      <InputControlled control={control}
+          name="email"
+          label="Email"
+          errorMessage={errors.email?.message}
+          rules={FormRules.email}
+          type="text"
+          keyboardType="email-address"
+          placeholder="Enter your email"/>
+      <InputControlled control={control}
+          name="password"
+          label="Password"
+          errorMessage={errors.password?.message}
+          rules={FormRules.password}
+          type="password"
+          placeholder="Enter your password"/>
       </View>
       <View style={styles.footer}>
-        <ButtonPrimary primaryBlock label='Login'/>
+        <ButtonPrimary primaryBlock label='Login' onPress={handleSubmit(onSubmit)}/>
         <Text style={styles.text}>or sign in with</Text>
         <View style={styles.final}>
         <View style={styles.icons}>

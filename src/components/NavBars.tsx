@@ -28,9 +28,9 @@ interface INavBar {
 }
 
 export const NavBars:React.FC<INavBar> = ({leftIcon,rightIcon,rightPress,leftPress,size,settings,title,largeTitle,button,caption,largeIcon,onPress,style}) => {
-  if(size==='standard' && settings==='settings'){
+  if(size==='standard' ? settings==='settings':null){
     return(
-      <View style={[styles.standard,button && !title ? styles.withButton:null]}>
+      <View style={[styles.standard,button ? !title ? styles.withButton:null:null]}>
         <View style={styles.settings}>
           <ChevronLeft onPress={leftPress} hitSlop={{right:12,left:12,top:12,bottom:12}}/>
           <Text style={styles.settingsTitle}>Settings</Text>
@@ -44,7 +44,7 @@ export const NavBars:React.FC<INavBar> = ({leftIcon,rightIcon,rightPress,leftPre
   } 
   else if(size ==='standard'){
     return(
-      <View style={[styles.standard,button && !title ? styles.withButton:null, size==='standard' && !button && !rightIcon? styles.singleTitle : null]}> 
+      <View style={[styles.standard,button ? !title ? styles.withButton:null:null, size==='standard' ? !button ? !rightIcon? styles.singleTitle : null:null:null]}> 
         {leftIcon?<ChevronLeft onPress={leftPress} hitSlop={{right:12,left:12,top:12,bottom:12}}/>:button}
         <Text style={styles.title}>{title}</Text>
         <Pressable onPress={rightPress} hitSlop={{right:12,left:12,top:12,bottom:12}}>

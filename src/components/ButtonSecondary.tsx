@@ -41,20 +41,20 @@ export const ButtonSecondary: React.FC<IButtonSecondary> = ({
       style={({pressed}) => {
         return [
           styles.container,
-          secondaryBlock && styles.secondaryBlock,
-          secondaryLarge && styles.secondaryLarge,
-          secondarySmall && styles.secondarySmall,
-          pressed && styles.pressed,
-          disabled && styles.disabled,
+          secondaryBlock ? styles.secondaryBlock:null,
+          secondaryLarge ? styles.secondaryLarge:null,
+          secondarySmall ? styles.secondarySmall:null,
+          pressed ? styles.pressed:null,
+          disabled ? styles.disabled:null,
           customStyles,
-          centered && styles.centered,
+          centered ? styles.centered:null,
         ];
       }}
       disabled={disabled}
       onPress={onPress}
       onPressIn={() => setPressing(true)}
       onPressOut={() => setPressing(false)}>
-      {hasMessageSign && (
+      {hasMessageSign ? (
         <MessageSign
           opacity={showMessageSign ? 1 : 0}
           color={
@@ -65,17 +65,17 @@ export const ButtonSecondary: React.FC<IButtonSecondary> = ({
               : colors.primary.base
           }
         />
-      )}
+      ):null}
       <Text
         style={[
           styles.text,
           styles.textNomal,
-          pressing && styles.textPressed,
-          disabled && styles.textDisabled,
+          pressing ? styles.textPressed:null,
+          disabled ? styles.textDisabled:null,
         ]}>
         {label}
       </Text>
-      {hasArrowSign && (
+      {hasArrowSign ? (
         <ArrowRight
           opacity={showArrowSign ? 1 : 0}
           color={
@@ -86,7 +86,7 @@ export const ButtonSecondary: React.FC<IButtonSecondary> = ({
               : colors.primary.base
           }
         />
-      )}
+      ):null}
     </Pressable>
   );
 };

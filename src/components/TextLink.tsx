@@ -63,7 +63,7 @@ export const TextLink: React.FC<TextLinkProps> = ({
   }, [content, createHighlightedText, highlighted]);
 
   return (
-    <Text style={[center && TypographyStyles.SmallNormalSemibold, style]}>
+    <Text style={[center ? TypographyStyles.SmallNormalSemibold:null, style]}>
       {renderElements}
     </Text>
   );
