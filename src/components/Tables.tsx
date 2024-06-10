@@ -13,6 +13,7 @@ interface ITables {
   rightType?: TRight;
   leftType: TLeft;
   right?: string | React.ReactNode;
+  onPress: () => void;
 }
 
 function renderRight(value: string, right: string | React.ReactNode) {
@@ -60,21 +61,27 @@ export const Tables: React.FC<ITables> = ({
   right,
   rightType,
   leftType,
+  onPress,
 }) => {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.leftContainer}>
-        {renderLeft(leftType, left) || null}
-      </Pressable>
-      <View>
-        <Text style={styles.contentStyle}>{content}</Text>
-        {caption && (
-          <Text style={(styles.contentStyle, {color: colors.ink.lighter})}>
-            {caption}
-          </Text>
-        )}
+      <View style={styles.gapView}>
+        <Pressable style={styles.leftContainer}>
+          {renderLeft(leftType, left) || null}
+        </Pressable>
+        <Pressable onPress={onPress}>
+          <View>
+            <Text style={styles.contentStyle}>{content}</Text>
+            {caption ? (
+              <Text style={(styles.contentStyle, {color: colors.ink.lighter})}>
+                {caption}
+              </Text>
+            ) : null}
+          </View>
+        </Pressable>
       </View>
-      <Pressable style={[styles.rightContainer, !rightType && styles.hide]}>
+      <Pressable
+        style={[styles.rigthContainer, !rightType ? styles.hide : null]}>
         {renderRight(rightType, right) || null}
       </Pressable>
     </View>
@@ -98,7 +105,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: colors.primary.base,
-
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
@@ -123,5 +129,10 @@ const styles = StyleSheet.create({
   leftContainer: {
     alignItems: 'flex-start',
     flex: 0.1,
+  },
+  gapView: {
+    flexDirection: 'row',
+    gap: 60,
+    alignItems: 'center',
   },
 });

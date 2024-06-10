@@ -49,25 +49,24 @@ export const NavBars: React.FC<INavBar> = ({
   onPress,
   style,
 }) => {
-  if (size === 'standard' && settings === 'settings') {
+  if (size === 'standard' ? settings === 'settings' : null) {
     return (
       <View
         style={[
           styles.standard,
-          button && !title ? styles.withButton : null,
-          style,
+          button ? (!title ? styles.withButton : null) : null,
         ]}>
         <View style={styles.settings}>
           <ChevronLeft
             onPress={leftPress}
-            hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}
+            hitSlop={{right: 25, left: 25, top: 25, bottom: 25}}
           />
           <Text style={styles.settingsTitle}>Settings</Text>
         </View>
         <Text style={styles.title}>{title}</Text>
         <Pressable
           onPress={rightPress}
-          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+          hitSlop={{right: 25, left: 25, top: 25, bottom: 25}}>
           {rightIcon ? rightIcon : button}
         </Pressable>
       </View>
@@ -77,11 +76,14 @@ export const NavBars: React.FC<INavBar> = ({
       <View
         style={[
           styles.standard,
-          button && !title ? styles.withButton : null,
-          size === 'standard' && !button && !rightIcon
-            ? styles.singleTitle
+          button ? (!title ? styles.withButton : null) : null,
+          size === 'standard'
+            ? !button
+              ? !rightIcon
+                ? styles.singleTitle
+                : null
+              : null
             : null,
-          style,
         ]}>
         {leftIcon ? (
           <ChevronLeft

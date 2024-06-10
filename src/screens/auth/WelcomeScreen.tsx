@@ -2,7 +2,6 @@ import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
 import React from 'react';
 import {CommonStyles} from '../../theme/common.styles';
 import {windowWidth} from '../../theme/consts.styles';
-import {Button} from 'react-native';
 import {TypographyStyles} from '../../theme/typography';
 import {colors} from '../../theme/colors';
 import {onboarding} from '../../constants/onboarding';
@@ -232,7 +231,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     position: 'absolute',
     zIndex: 1,
-    top: 24,
+    top: 58,
   },
   image2: {
     width: 328,

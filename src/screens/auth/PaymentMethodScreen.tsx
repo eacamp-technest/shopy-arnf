@@ -10,28 +10,26 @@ import {Routers} from '../../router/routers';
 import {NavBars} from '../../components/NavBars';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {TextLink} from '../../components/TextLink';
-import {TextInput} from 'react-native-gesture-handler';
+import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {TypographyStyles} from '../../theme/typography';
 import MasterCard from '../../../assets/vectors/masterCard.svg';
 import ChevronRight from '../../../assets/vectors/chevron-right.svg';
 import AddCard from '../../../assets/vectors/addCardIcon.svg';
+import {normalize} from '../../theme/metrics';
 
 export const PaymentMethodScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.paymentMethod>
 > = ({navigation}) => {
-  const navigateToVerification = () => {
-    navigation.navigate(Routers.verification);
-  };
   const navigateToNewCard = () => {
     navigation.navigate(Routers.newCard);
   };
 
   return (
-    <View>
+    <ScrollView>
       <NavBars
         style={styles.skipNav}
         leftIcon
-        leftPress={navigateToVerification}
+        leftPress={navigation.goBack}
         size="standard"
         button={<ButtonTransparent label="Skip" />}
       />
@@ -52,19 +50,25 @@ export const PaymentMethodScreen: React.FC<
           ]}
         />
         <View style={styles.cards}>
-          <Tables
-            leftType="icon"
-            left={<MasterCard></MasterCard>}
-            content="Mastercard * * * * 4 2 1 3"
-            caption="Primary"
-            rightType="icon"
-            right={<ChevronRight></ChevronRight>}></Tables>
-          <Tables
-            content="Add another card"
-            leftType="icon"
-            left={<AddCard></AddCard>}
-            rightType="icon"
-            right={<ChevronRight></ChevronRight>}></Tables>
+          <Pressable>
+            <Tables
+              leftType="icon"
+              left={<MasterCard />}
+              content="Mastercard * * * * 4 2 1 3"
+              caption="Primary"
+              rightType="icon"
+              right={<ChevronRight />}
+            />
+          </Pressable>
+          <Pressable onPress={navigateToNewCard}>
+            <Tables
+              content="Add another card"
+              leftType="icon"
+              left={<AddCard />}
+              rightType="icon"
+              right={<ChevronRight />}
+            />
+          </Pressable>
         </View>
       </View>
       <View>
@@ -75,19 +79,19 @@ export const PaymentMethodScreen: React.FC<
         <ButtonPrimary
           style={styles.button}
           primaryBlock
-          label="Connect a bank account"></ButtonPrimary>
+          label="Connect a bank account"
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   skipNav: {
-    paddingVertical: 5,
+    paddingVertical: normalize('vertical', 25),
   },
-
   paymentNav: {
-    paddingTop: 5,
+    paddingTop: normalize('vertical', 5),
   },
   header: {...TypographyStyles.RegularNoneSemiBold, marginBottom: 10},
   text: {
@@ -95,13 +99,13 @@ const styles = StyleSheet.create({
     color: colors.ink.lighter,
   },
   middleView: {
-    marginVertical: 30,
+    marginVertical: normalize('vertical', 30),
   },
   button: {
-    marginTop: 25,
+    marginTop: normalize('vertical', 25),
   },
 
   cards: {
-    marginTop: 20,
+    marginTop: normalize('vertical', 20),
   },
 });

@@ -13,6 +13,7 @@ import {Routers} from '../../router/routers';
 import {CustomModal} from '../../components/CustomModal';
 import {PaymentMethodScreen} from './PaymentMethodScreen';
 import {NavBars} from '../../components/NavBars';
+import {normalize} from '../../theme/metrics';
 
 export const VerificationScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.verification>
@@ -29,7 +30,7 @@ export const VerificationScreen: React.FC<
     setModalVisible(!isModalVisible);
   };
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.root}>
         <View style={styles.navbar}>
           <NavBars size="standard" leftIcon leftPress={navigateToRegister} />
