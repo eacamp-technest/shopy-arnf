@@ -9,9 +9,9 @@ import {
   Pressable,
 } from 'react-native';
 import React, {useMemo, useState} from 'react';
-import { TypographyStyles } from '../theme/typography';
-import { colors } from '../theme/colors';
-import { CommonStyles } from '../theme/common.styles';
+import {TypographyStyles} from '../theme/typography';
+import {colors} from '../theme/colors';
+import {CommonStyles} from '../theme/common.styles';
 import EyeOff from '../../assets/vectors/eye-off.svg';
 import Eye from '../../assets/vectors/eye.svg';
 
@@ -55,8 +55,9 @@ export const TextInputs: React.FC<ITextInput> = ({
 
   const isMoreIcon = useMemo(
     () =>
-      ('position' in (icon ?? {}) ? (icon as TIcon)?.position === 'right' : null) ||
-      type === 'password',
+      ('position' in (icon ?? {})
+        ? (icon as TIcon)?.position === 'right'
+        : null) || type === 'password',
     [icon, type],
   );
 
@@ -65,11 +66,14 @@ export const TextInputs: React.FC<ITextInput> = ({
   const renderIcon = useMemo(() => {
     if (type === 'password') {
       return (
-        <Pressable hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }} onPress={() => setSecureTextEntry(state => !state)}>
-          {
-            secureTextEntry ?
-              <EyeOff color={colors.ink.base} width={24} height={24} /> : <Eye color={colors.ink.base} width={24} height={24} />
-          }
+        <Pressable
+          hitSlop={{top: 12, bottom: 12, left: 12, right: 12}}
+          onPress={() => setSecureTextEntry(state => !state)}>
+          {secureTextEntry ? (
+            <EyeOff color={colors.ink.base} width={24} height={24} />
+          ) : (
+            <Eye color={colors.ink.base} width={24} height={24} />
+          )}
         </Pressable>
       );
     }
@@ -77,7 +81,6 @@ export const TextInputs: React.FC<ITextInput> = ({
     if (!icon) {
       return null;
     }
-
   }, [icon, props.disabled, secureTextEntry, type]);
 
   const handleOnFocused = () => {
@@ -119,7 +122,7 @@ export const TextInputs: React.FC<ITextInput> = ({
           autoCapitalize="none"
           editable={!isPressable ?? !props.disabled}
           secureTextEntry={secureTextEntry}
-          onChangeText={handleTextChange} 
+          onChangeText={handleTextChange}
           placeholderTextColor={
             props.disabled ? colors.sky.base : colors.ink.lighter
           }
@@ -138,7 +141,6 @@ export const TextInputs: React.FC<ITextInput> = ({
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   root: {

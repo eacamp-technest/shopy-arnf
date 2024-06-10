@@ -11,13 +11,15 @@ import {
   authScreenOptions,
   defaultScreenOptions,
 } from '../configs/navigationConfigs';
-import {Edges} from 'react-native-safe-area-context';
+import {Edges, SafeAreaView} from 'react-native-safe-area-context';
+import {NewCardScreen} from '../screens/auth/NewCardScreen';
 
 const AuthStack = createNativeStackNavigator<NavigationParamlist>();
 const edges: Edges = {bottom: 'off', top: 'additive'};
 
 export const AuthRouter = () => {
   return (
+    <SafeAreaView style={{flex: 1}} edges={edges}>
       <AuthStack.Navigator
         screenOptions={authScreenOptions}
         initialRouteName={Routers.welcome}>
@@ -36,6 +38,8 @@ export const AuthRouter = () => {
           name={Routers.paymentMethod}
           component={PaymentMethodScreen}
         />
+        <AuthStack.Screen name={Routers.newCard} component={NewCardScreen} />
       </AuthStack.Navigator>
+    </SafeAreaView>
   );
 };

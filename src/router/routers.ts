@@ -14,6 +14,7 @@ export enum Routers {
   welcome = 'welcome',
   register = 'register',
   test = 'test',
+  newCard = 'newCard',
 }
 
 export enum StackRoutes {
