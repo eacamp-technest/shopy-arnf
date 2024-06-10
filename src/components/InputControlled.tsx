@@ -40,7 +40,7 @@ export const InputControlled: React.FC<IInputController> = ({
       render={({field}) => (
         <TextInputs
           disabled={disabled}
-          setValue={(value) => handleValueChange(value, field.onChange)}
+          setValue={value => handleValueChange(value, field.onChange)}
           value={field.value}
           onBlur={field.onBlur}
           {...inputProps}

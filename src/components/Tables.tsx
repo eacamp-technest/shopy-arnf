@@ -13,9 +13,10 @@ interface ITables {
   rightType?: TRight;
   leftType: TLeft;
   right?: string | React.ReactNode;
+  onPress: () => void;
 }
 
-function renderRight(value: string, right:string | React.ReactNode) {
+function renderRight(value: string, right: string | React.ReactNode) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   switch (value) {
@@ -45,7 +46,7 @@ function renderRight(value: string, right:string | React.ReactNode) {
       break;
   }
 }
-function renderLeft(value: string, left:any) {
+function renderLeft(value: string, left: any) {
   switch (value) {
     case 'image':
       return <Image source={left} style={styles.image} />;
@@ -60,21 +61,27 @@ export const Tables: React.FC<ITables> = ({
   right,
   rightType,
   leftType,
+  onPress,
 }) => {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.leftContainer}>
-        {renderLeft(leftType, left) || null}
-      </Pressable>
-      <View>
-        <Text style={styles.contentStyle}>{content}</Text>
-        {caption ? (
-          <Text style={(styles.contentStyle, {color: colors.ink.lighter})}>
-            {caption}
-          </Text>
-        ):null}
+      <View style={styles.gapView}>
+        <Pressable style={styles.leftContainer}>
+          {renderLeft(leftType, left) || null}
+        </Pressable>
+        <Pressable onPress={onPress}>
+          <View>
+            <Text style={styles.contentStyle}>{content}</Text>
+            {caption ? (
+              <Text style={(styles.contentStyle, {color: colors.ink.lighter})}>
+                {caption}
+              </Text>
+            ) : null}
+          </View>
+        </Pressable>
       </View>
-      <Pressable style={[styles.rigthContainer, !rightType ? styles.hide:null]}>
+      <Pressable
+        style={[styles.rigthContainer, !rightType ? styles.hide : null]}>
         {renderRight(rightType, right) || null}
       </Pressable>
     </View>
@@ -84,12 +91,12 @@ export const Tables: React.FC<ITables> = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: normalize('vertical', 22),
+    paddingVertical: normalize('vertical', 15),
   },
   contentStyle: {
-    ...TypographyStyles.RegularTightRegular,
+    ...TypographyStyles.RegularNoneSemiBold,
     color: colors.ink.darkest,
   },
   rightStyle: {
@@ -98,7 +105,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: colors.primary.base,
-
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
@@ -116,12 +122,17 @@ const styles = StyleSheet.create({
   hide: {
     opacity: 0,
   },
-  rigthContainer: {
+  rightContainer: {
     alignItems: 'flex-end',
     flex: 0.5,
   },
   leftContainer: {
     alignItems: 'flex-start',
     flex: 0.1,
+  },
+  gapView: {
+    flexDirection: 'row',
+    gap: 60,
+    alignItems: 'center',
   },
 });
