@@ -1,17 +1,17 @@
 import {View, StyleSheet, ScrollView, Text} from 'react-native';
 import React from 'react';
-import { ButtonPrimary } from '../../components/ButtonPrimary';
+import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
-import { TextLink } from '../../components/TextLink';
-import { TypographyStyles } from '../../theme/typography';
-import { normalize } from '../../theme/metrics';
-import { Dimensions } from 'react-native';
-import { NavBars } from '../../components/NavBars';
-import { InputControlled } from '../../components/InputControlled';
-import { useForm } from 'react-hook-form';
-import { FormRules } from '../../constants/formRules';
+import {TextLink} from '../../components/TextLink';
+import {TypographyStyles} from '../../theme/typography';
+import {normalize} from '../../theme/metrics';
+import {Dimensions} from 'react-native';
+import {NavBars} from '../../components/NavBars';
+import {InputControlled} from '../../components/InputControlled';
+import {useForm} from 'react-hook-form';
+import {FormRules} from '../../constants/formRules';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -23,9 +23,8 @@ interface IRegisterForm {
 }
 
 export const RegisterScreen: React.FC<
-NativeStackScreenProps<NavigationParamlist, Routers.register>
+  NativeStackScreenProps<NavigationParamlist, Routers.register>
 > = ({navigation}) => {
-  
   const navigateToWelcome = () => {
     navigation.navigate(Routers.welcome);
   };
@@ -39,8 +38,8 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
     formState: {errors, isSubmitting},
   } = useForm<IRegisterForm>({
     defaultValues: {
-      fullName: 'Khayyam Karimov',
-      email: 'xeyyam.kerimov@gmail.com',
+      fullName: 'John Wick',
+      email: 'user1234@gmail.com',
       password: 'Admin123!',
     },
   });
@@ -49,19 +48,17 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
     navigateToVerification();
   };
 
-  
-
   return (
-    <ScrollView scrollEnabled={false} >
+    <ScrollView scrollEnabled={false}>
       <View style={styles.container}>
       <NavBars leftIcon size='standard' leftPress={navigateToWelcome}/>
-      <NavBars largeTitle='Create Account' size='large' />
+      <NavBars largeTitle='Create Account' size='large'/>
       <InputControlled
             control={control}
             name="fullName"
             errorMessage={errors.fullName?.message}
             label="Full Name"
-            placeholder="Khayyam Karimov"
+            placeholder="Enter your full name"
             rules={FormRules.fullName}
           />
        <InputControlled
@@ -80,6 +77,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
             errorMessage={errors.password?.message}
             rules={FormRules.password}
             placeholder="Enter your password"
+            type='password'
           />
       <View style={styles.footer}>
       <ButtonPrimary label='Create an account' primaryBlock  onPress={handleSubmit(onSubmit)}/>
@@ -96,21 +94,19 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
         ]}/>
         </View>
       </View>
-     </ScrollView>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     gap: 24,
-    marginTop:normalize('vertical',54)
   },
-  textLink:{
+  textLink: {
     ...TypographyStyles.SmallNormalRegular,
-
   },
-  footer:{
+  footer: {
     flex: 1,
-    gap:198
-  }
-})
+    gap: 198,
+  },
+});
