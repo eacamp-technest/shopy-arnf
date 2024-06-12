@@ -38,8 +38,8 @@ export const RegisterScreen: React.FC<
     formState: {errors, isSubmitting},
   } = useForm<IRegisterForm>({
     defaultValues: {
-      fullName: 'Khayyam Karimov',
-      email: 'xeyyam.kerimov@gmail.com',
+      fullName: 'John Wick',
+      email: 'user1234@gmail.com',
       password: 'Admin123!',
     },
   });
@@ -51,53 +51,47 @@ export const RegisterScreen: React.FC<
   return (
     <ScrollView scrollEnabled={false}>
       <View style={styles.container}>
-        <NavBars leftIcon size="standard" leftPress={navigateToWelcome} />
-        <NavBars largeTitle="Create Account" size="large" />
-        <InputControlled
-          control={control}
-          name="fullName"
-          errorMessage={errors.fullName?.message}
-          label="Full Name"
-          placeholder="Khayyam Karimov"
-          rules={FormRules.fullName}
-        />
-        <InputControlled
-          label="Email"
-          control={control}
-          keyboardType="email-address"
-          name="email"
-          errorMessage={errors.email?.message}
-          rules={FormRules.email}
-          placeholder="Enter your email"
-        />
-        <InputControlled
-          label="Password"
-          control={control}
-          name="password"
-          errorMessage={errors.password?.message}
-          rules={FormRules.password}
-          placeholder="Enter your password"
-        />
-        <View style={styles.footer}>
-          <ButtonPrimary
-            label="Create an account"
-            primaryBlock
-            onPress={handleSubmit(onSubmit)}
+      <NavBars leftIcon size='standard' leftPress={navigateToWelcome}/>
+      <NavBars largeTitle='Create Account' size='large'/>
+      <InputControlled
+            control={control}
+            name="fullName"
+            errorMessage={errors.fullName?.message}
+            label="Full Name"
+            placeholder="Enter your full name"
+            rules={FormRules.fullName}
           />
-          <TextLink
-            content="By signing up you agree to our Terms and Conditions of Use"
-            center
-            highlighted={[
-              {
-                text: 'Terms',
-                callback: () => console.log('terms'),
-              },
-              {
-                text: 'Conditions of Use',
-                callback: () => console.log('conditions'),
-              },
-            ]}
+       <InputControlled
+            label="Email"
+            control={control}
+            keyboardType="email-address"
+            name="email"
+            errorMessage={errors.email?.message}
+            rules={FormRules.email}
+            placeholder="Enter your email"
           />
+      <InputControlled
+            label="Password"
+            control={control}
+            name="password"
+            errorMessage={errors.password?.message}
+            rules={FormRules.password}
+            placeholder="Enter your password"
+            type='password'
+          />
+      <View style={styles.footer}>
+      <ButtonPrimary label='Create an account' primaryBlock  onPress={handleSubmit(onSubmit)}/>
+      <TextLink content='By signing up you agree to our Terms and Conditions of Use' center
+        highlighted={[
+          {
+            text: 'Terms',
+            callback: () => console.log('terms')
+          },
+          {
+            text: 'Conditions of Use',
+            callback: () => console.log('conditions')
+          },
+        ]}/>
         </View>
       </View>
     </ScrollView>

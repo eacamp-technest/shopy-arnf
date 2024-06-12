@@ -38,7 +38,7 @@ export const LoginScreen: React.FC<
     formState: {errors, isSubmitting},
   } = useForm<IRegisterForm>({
     defaultValues: {
-      email: 'xeyyam.kerimov@gmail.com',
+      email: 'user1234@gmail.com',
       password: 'Admin123!',
     },
   });
