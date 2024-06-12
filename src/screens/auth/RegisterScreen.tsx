@@ -55,7 +55,7 @@ NativeStackScreenProps<NavigationParamlist, Routers.register>
     <ScrollView scrollEnabled={false} >
       <View style={styles.container}>
       <NavBars leftIcon size='standard' leftPress={navigateToWelcome}/>
-      <NavBars largeTitle='Create Account' size='large'/>
+      <NavBars largeTitle='Create Account' size='large' />
       <InputControlled
             control={control}
             name="fullName"
