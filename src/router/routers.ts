@@ -1,20 +1,23 @@
 export enum Routers {
   authRouter = 'authRouter',
   mainRouter = 'mainRouter',
-  onboarding = 'onboarding',
+  welcome = 'welcome',
   login = 'login',
-  singUp = 'singUp',
+  register = 'register',
+  verification = 'verification',
   paymentScreensTab = 'paymentScreensTab',
   paymentMethod = 'paymentMethod',
-  addNewCard = 'addNewCard',
-  saveCard = 'saveCard',
-  yourCard = 'yourCard',
-  verification = 'verification',
-  tabRouter = 'tabRouter',
-  welcome = 'welcome',
-  register = 'register',
-  test = 'test',
   newCard = 'newCard',
+  cards = 'cards',
+  modalScreen = 'modalScreen',
+
+  tab = 'tab',
+  home = 'home',
+  discover = 'discover',
+  bookmarks = 'bookmarks',
+  notifications = 'notifications',
+  settings = 'settings',
+  test = 'test',
 }
 
 export enum StackRoutes {

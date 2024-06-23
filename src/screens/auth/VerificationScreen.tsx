@@ -2,7 +2,6 @@ import {View, Text, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {OtpInput} from 'react-native-otp-entry';
 import {colors} from '../../theme/colors';
-import {Svg} from 'react-native-svg';
 import ArrowLeft from '../../../assets/vectors/chevron-left.svg';
 import {TypographyStyles} from '../../theme/typography';
 import {TextLink} from '../../components/TextLink';
@@ -11,9 +10,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
 import {CustomModal} from '../../components/CustomModal';
-import {PaymentMethodScreen} from './PaymentMethodScreen';
 import {NavBars} from '../../components/NavBars';
-import {normalize} from '../../theme/metrics';
 
 export const VerificationScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.verification>
@@ -33,7 +30,7 @@ export const VerificationScreen: React.FC<
     <View style={styles.container}>
       <View style={styles.root}>
         <View style={styles.navbar}>
-          <NavBars size="standard" leftIcon leftPress={navigateToRegister} />
+          <NavBars size="standard" leftIcon={<ArrowLeft/>} leftPress={navigateToRegister} />
           <NavBars size="large" largeTitle="enter sms code" />
         </View>
         <OtpInput

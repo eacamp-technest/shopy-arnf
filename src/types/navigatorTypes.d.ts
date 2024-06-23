@@ -13,4 +13,10 @@ export type NavigationParamlist = {
   [Routers.verification]: undefined;
   [Routers.test]: undefined;
   [Routers.newCard]: undefined;
+  [Routers.bookmarks]:undefined;
+  [Routers.discover]:undefined;
+  [Routers.home]:undefined;
+  [Routers.notifications]:undefined;
+  [Routers.settings]:undefined;
+  [Routers.tab]:undefined;
 };

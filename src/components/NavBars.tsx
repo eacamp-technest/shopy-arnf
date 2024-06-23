@@ -7,7 +7,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import React from 'react';
-import {processColorsInProps} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 import ChevronLeft from '../../assets/vectors/chevron-left.svg';
 import Settings from '../../assets/vectors/settings.svg';
 import {ButtonTransparent} from './ButtonTransparent';
@@ -57,16 +56,17 @@ export const NavBars: React.FC<INavBar> = ({
           button ? (!title ? styles.withButton : null) : null,
         ]}>
         <View style={styles.settings}>
-          <ChevronLeft
-            onPress={leftPress}
-            hitSlop={{right: 25, left: 25, top: 25, bottom: 25}}
-          />
+        <Pressable
+          onPress={leftPress}
+          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+          {leftIcon ? leftIcon : button}
+        </Pressable>
           <Text style={styles.settingsTitle}>Settings</Text>
         </View>
         <Text style={styles.title}>{title}</Text>
         <Pressable
           onPress={rightPress}
-          hitSlop={{right: 25, left: 25, top: 25, bottom: 25}}>
+          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
           {rightIcon ? rightIcon : button}
         </Pressable>
       </View>
@@ -85,14 +85,11 @@ export const NavBars: React.FC<INavBar> = ({
               : null
             : null,
         ]}>
-        {leftIcon ? (
-          <ChevronLeft
-            onPress={leftPress}
-            hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}
-          />
-        ) : (
-          button
-        )}
+         <Pressable
+          onPress={leftPress}
+          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+          {leftIcon ? leftIcon : button}
+        </Pressable>
         <Text style={styles.title}>{title}</Text>
         <Pressable
           onPress={rightPress}
