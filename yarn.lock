@@ -6383,7 +6383,7 @@ react-native-otp-entry@^1.6.1:
   resolved "https://registry.npmjs.org/react-native-otp-entry/-/react-native-otp-entry-1.6.1.tgz"
   integrity sha512-a6nJu9lnezUyCsUU/HEJzmw+Sk/hX7WtqU1vW825DhPuAdHv1GcO28xOf69oIYEnkUAKyxpelA2u1k6hyScPcA==
 
-react-native-pager-view@*:
+react-native-pager-view@*, react-native-pager-view@^6.3.3:
   version "6.3.3"
   resolved "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-6.3.3.tgz"
   integrity sha512-HViKBlfN/kBJUSu5mRL/V9Bkf1j7uDZozGAjbzh4o9XYo11qVcIK7IwvfzqrkNerVSDy/cAmZcXbcyWnII8xMA==
