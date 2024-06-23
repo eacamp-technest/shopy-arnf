@@ -16,6 +16,7 @@ import GoogleIcon from '../../../assets/vectors/googleIcon.svg';
 import {InputControlled} from '../../components/InputControlled';
 import {useForm} from 'react-hook-form';
 import {FormRules} from '../../constants/formRules';
+import ArrowLeft from '../../../assets/vectors/chevron-left.svg';
 
 interface IRegisterForm {
   email: string;
@@ -49,7 +50,7 @@ export const LoginScreen: React.FC<
   return (
     <ScrollView scrollEnabled={false} style={CommonStyles.flex} ref={scrollRef}>
       <View style={styles.container}>
-        <NavBars size="standard" leftIcon leftPress={navigateToWelcome} />
+        <NavBars size="standard" leftIcon={<ArrowLeft/>} leftPress={navigateToWelcome} />
         <NavBars
           size="large"
           largeTitle="Welcome!"

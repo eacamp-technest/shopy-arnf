@@ -1,4 +1,7 @@
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
+import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
+import {Routers} from '../router/routers';
+import { colors } from '../theme/colors';
 
 export const defaultScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
@@ -14,4 +17,13 @@ export const authScreenOptions: NativeStackNavigationOptions = {
     backgroundColor: 'white',
     paddingHorizontal: 24,
   },
+};
+
+export const tabBarScreenOptions: BottomTabNavigationOptions = {
+  headerShown: false,
+  tabBarShowLabel: false,
+  tabBarHideOnKeyboard: true,
+  tabBarActiveTintColor: colors.primary.base,
+  tabBarInactiveTintColor: colors.sky.dark,
+  
 };

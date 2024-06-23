@@ -1,4 +1,4 @@
-import {View, StyleSheet, ScrollView, Text} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -6,15 +6,12 @@ import {NavigationParamlist} from '../../types/navigatorTypes';
 import {Routers} from '../../router/routers';
 import {TextLink} from '../../components/TextLink';
 import {TypographyStyles} from '../../theme/typography';
-import {normalize} from '../../theme/metrics';
 import {Dimensions} from 'react-native';
 import {NavBars} from '../../components/NavBars';
 import {InputControlled} from '../../components/InputControlled';
 import {useForm} from 'react-hook-form';
 import {FormRules} from '../../constants/formRules';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import ArrowLeft from '../../../assets/vectors/chevron-left.svg';
 
 interface IRegisterForm {
   fullName: string;
@@ -35,7 +32,7 @@ export const RegisterScreen: React.FC<
   const {
     control,
     handleSubmit,
-    formState: {errors, isSubmitting},
+    formState: {errors}
   } = useForm<IRegisterForm>({
     defaultValues: {
       fullName: 'John Wick',
@@ -51,7 +48,7 @@ export const RegisterScreen: React.FC<
   return (
     <ScrollView scrollEnabled={false}>
       <View style={styles.container}>
-      <NavBars leftIcon size='standard' leftPress={navigateToWelcome}/>
+      <NavBars leftIcon={<ArrowLeft/>} size='standard' leftPress={navigateToWelcome}/>
       <NavBars largeTitle='Create Account' size='large'/>
       <InputControlled
             control={control}
