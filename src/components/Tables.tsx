@@ -1,138 +1,67 @@
-import {Image, Pressable, StyleSheet, Switch, Text, View} from 'react-native';
-import React, {useState} from 'react';
-import {TypographyStyles} from '../theme/typography';
-import {colors} from '../theme/colors';
-import {normalize} from '../theme/metrics';
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native';
+import React, {isValidElement} from 'react';
+import { TypographyStyles } from '../theme/typography';
+import { colors } from '../theme/colors';
 
-type TLeft = 'icon' | 'image' | 'views';
-type TRight = 'text' | 'icon' | 'button' | 'switch';
 interface ITables {
-  content: string;
+  content?: string;
   caption?: string;
-  left?: string | React.ReactNode;
-  rightType?: TRight;
-  leftType: TLeft;
-  right?: string | React.ReactNode;
-  onPress: () => void;
+  contentStyle?: StyleProp<TextStyle>;
+  Left?: React.ReactNode | null;
+  Right?: React.ReactNode | null;
+  onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
-function renderRight(value: string, right: string | React.ReactNode) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  switch (value) {
-    case 'text':
-      return <Text style={styles.rightStyle}> {value}</Text>;
-
-    case 'button':
-      return (
-        <Pressable style={styles.button}>
-          <Text style={styles.buttontitle}>{right}</Text>
-        </Pressable>
-      );
-
-    case 'switch':
-      return (
-        <Switch
-          trackColor={{false: '#767577', true: colors.primary.base}}
-          thumbColor={isEnabled ? 'white' : '#f4f3f4'}
-          ios_backgroundColor={colors.primary.base}
-          onValueChange={toggleSwitch}
-          value={isEnabled}
-        />
-      );
-    case 'icon':
-      return right;
-    default:
-      break;
-  }
-}
-function renderLeft(value: string, left: any) {
-  switch (value) {
-    case 'image':
-      return <Image source={left} style={styles.image} />;
-    case 'icon':
-      return left;
-  }
-}
 export const Tables: React.FC<ITables> = ({
-  content,
   caption,
-  left,
-  right,
-  rightType,
-  leftType,
+  content,
+  Left,
+  Right,
+  contentStyle,
   onPress,
+  style,
 }) => {
+  const isLeftValid = isValidElement(Left);
+  const isRightValid = isValidElement(Right);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.gapView}>
-        <Pressable style={styles.leftContainer}>
-          {renderLeft(leftType, left) || null}
-        </Pressable>
-        <Pressable onPress={onPress}>
-          <View>
-            <Text style={styles.contentStyle}>{content}</Text>
-            {caption ? (
-              <Text style={(styles.contentStyle, {color: colors.ink.lighter})}>
-                {caption}
-              </Text>
-            ) : null}
-          </View>
-        </Pressable>
+    <Pressable onPress={onPress} style={[styles.root, style]}>
+      {isLeftValid ? Left : null}
+      <View style={styles.texts}>
+        <Text style={[TypographyStyles.RegularTightRegular, contentStyle]}>
+          {content}
+        </Text>
+        {caption ? <Text style={styles.caption}>{caption}</Text> : null}
       </View>
-      <Pressable
-        style={[styles.rigthContainer, !rightType ? styles.hide : null]}>
-        {renderRight(rightType, right) || null}
-      </Pressable>
-    </View>
+      {isRightValid ? Right : null}
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    gap: 12,
     alignItems: 'center',
-    paddingVertical: normalize('vertical', 15),
   },
-  contentStyle: {
-    ...TypographyStyles.RegularNoneSemiBold,
-    color: colors.ink.darkest,
-  },
-  rightStyle: {
-    ...TypographyStyles.RegularTightSemibold,
-    color: colors.primary.base,
-  },
-  button: {
-    backgroundColor: colors.primary.base,
-    alignItems: 'center',
+  texts: {
+    flexGrow: 1,
     justifyContent: 'center',
-    borderRadius: 8,
+    gap: 4,
   },
-  buttontitle: {
-    ...TypographyStyles.RegularNoneSemiBold,
-    color: 'white',
-    paddingHorizontal: normalize('horizontal', 16),
-    paddingVertical: normalize('vertical', 8),
-  },
-  image: {
-    width: normalize('width', 40),
-    height: normalize('height', 40),
-  },
-  hide: {
-    opacity: 0,
-  },
-  rightContainer: {
-    alignItems: 'flex-end',
-    flex: 0.5,
-  },
-  leftContainer: {
-    alignItems: 'flex-start',
-    flex: 0.1,
-  },
-  gapView: {
-    flexDirection: 'row',
-    gap: 60,
-    alignItems: 'center',
+  caption: {
+    ...TypographyStyles.SmallTightRegular,
+    color: colors.ink.lighter,
   },
 });
