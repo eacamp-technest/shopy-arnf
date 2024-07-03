@@ -67,6 +67,7 @@ export const PaymentMethodScreen: React.FC<
               left={<AddCard />}
               rightType="icon"
               right={<ChevronRight />}
+              onPress={navigateToNewCard}
             />
           </Pressable>
         </View>

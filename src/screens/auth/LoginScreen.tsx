@@ -50,7 +50,11 @@ export const LoginScreen: React.FC<
   return (
     <ScrollView scrollEnabled={false} style={CommonStyles.flex} ref={scrollRef}>
       <View style={styles.container}>
-        <NavBars size="standard" leftIcon={<ArrowLeft/>} leftPress={navigateToWelcome} />
+        <NavBars
+          size="standard"
+          leftIcon={<ArrowLeft />}
+          leftPress={navigateToWelcome}
+        />
         <NavBars
           size="large"
           largeTitle="Welcome!"
