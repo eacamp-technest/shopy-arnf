@@ -8,7 +8,7 @@ const isAuth = false;
 const Router = () => {
   return (
     <NavigationContainer>
-      {!isAuth ? <MainRouter /> : <AuthRouter />}
+      {isAuth ? <MainRouter /> : <AuthRouter />}
     </NavigationContainer>
   );
 };

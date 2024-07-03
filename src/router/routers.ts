@@ -10,6 +10,7 @@ export enum Routers {
   newCard = 'newCard',
   cards = 'cards',
   modalScreen = 'modalScreen',
+  card = 'card',
 
   tab = 'tab',
   home = 'home',

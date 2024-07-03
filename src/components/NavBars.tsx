@@ -53,11 +53,11 @@ export const NavBars: React.FC<INavBar> = ({
           button ? (!title ? styles.withButton : null) : null,
         ]}>
         <View style={styles.settings}>
-        <Pressable
-          onPress={leftPress}
-          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
-          {leftIcon ? leftIcon : button}
-        </Pressable>
+          <Pressable
+            onPress={leftPress}
+            hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+            {leftIcon ? leftIcon : button}
+          </Pressable>
           <Text style={styles.settingsTitle}>Settings</Text>
         </View>
         <Text style={styles.title}>{title}</Text>
@@ -82,12 +82,12 @@ export const NavBars: React.FC<INavBar> = ({
               : null
             : null,
         ]}>
-         <Pressable
+        <Pressable
           onPress={leftPress}
           hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
           {leftIcon ? leftIcon : button}
         </Pressable>
-        <Text style={[styles.title,style]}>{title}</Text>
+        <Text style={[styles.title, style]}>{title}</Text>
         <Pressable
           onPress={rightPress}
           hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 40,
+    gap: 120,
   },
   settings: {
     flexDirection: 'row',
