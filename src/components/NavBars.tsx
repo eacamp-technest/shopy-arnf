@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   withButton: {
-    gap: 135,
   },
   large: {
     flexDirection: 'row',
