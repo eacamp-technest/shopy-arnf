@@ -16,6 +16,7 @@ import MasterCard from '../../../assets/vectors/masterCard.svg';
 import ChevronRight from '../../../assets/vectors/chevron-right.svg';
 import AddCard from '../../../assets/vectors/addCardIcon.svg';
 import {normalize} from '../../theme/metrics';
+import ArrowLeft from '../../../assets/vectors/chevron-left.svg';
 
 export const PaymentMethodScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.paymentMethod>
@@ -23,13 +24,16 @@ export const PaymentMethodScreen: React.FC<
   const navigateToNewCard = () => {
     navigation.navigate(Routers.newCard);
   };
+  const navigateToVerification = () => {
+    navigation.navigate(Routers.verification);
+  };
 
   return (
     <ScrollView>
       <NavBars
         style={styles.skipNav}
-        leftIcon
-        leftPress={navigation.goBack}
+        leftIcon={<ArrowLeft />}
+        leftPress={navigateToVerification}
         size="standard"
         button={<ButtonTransparent label="Skip" />}
       />
