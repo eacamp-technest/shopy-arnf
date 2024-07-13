@@ -8,8 +8,8 @@ import {
   ViewStyle,
 } from 'react-native';
 import React, {isValidElement} from 'react';
-import { TypographyStyles } from '../theme/typography';
-import { colors } from '../theme/colors';
+import {TypographyStyles} from '../theme/typography';
+import {colors} from '../theme/colors';
 
 interface ITables {
   content?: string;

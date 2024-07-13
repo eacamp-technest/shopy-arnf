@@ -1,7 +1,7 @@
 import React from 'react';
 import {Insets, Pressable, StyleProp, ViewStyle} from 'react-native';
 import {SvgProps} from 'react-native-svg';
-import { normalize } from '../theme/metrics';
+import {normalize} from '../theme/metrics';
 
 export interface SvgImageProps extends SvgProps {
   source: any;

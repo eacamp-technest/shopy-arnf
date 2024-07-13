@@ -1,9 +1,8 @@
 import {View, Text, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NavigationParamlist} from '../../types/navigatorTypes';
 import {NavBars} from '../../components/NavBars';
-import {Routers} from '../../router/routers';
 import {ButtonTransparent} from '../../components/ButtonTransparent';
 import {TextInputs} from '../../components/TextInputs';
 import {colors} from '../../theme/colors';
@@ -13,6 +12,7 @@ import {InputControlled} from '../../components/InputControlled';
 import {useForm} from 'react-hook-form';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import ArrowLeft from '../../../assets/vectors/chevron-left.svg';
+import {Routers} from '../../router/routers';
 
 export const NewCardScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.newCard>
@@ -22,12 +22,14 @@ export const NewCardScreen: React.FC<
   const navigateToCard = () => {
     navigation.navigate(Routers.card);
   };
-
+  const navigateToPaymentMethod= () => {
+    navigation.navigate(Routers.paymentMethod);
+  };
   return (
     <View>
       <NavBars
         leftIcon={<ArrowLeft />}
-        leftPress={navigation.goBack}
+        leftPress={navigateToPaymentMethod}
         size="standard"
         button={<ButtonTransparent label="Skip" />}
       />
