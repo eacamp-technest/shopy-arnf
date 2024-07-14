@@ -17,12 +17,14 @@ import ChevronRight from '../../../assets/vectors/chevron-right.svg';
 import AddCard from '../../../assets/vectors/addCardIcon.svg';
 import {normalize} from '../../theme/metrics';
 import ArrowLeft from '../../../assets/vectors/chevron-left.svg';
+import {useCardStore} from '../../store/useCardStore';
 
 export const PaymentMethodScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.paymentMethod>
 > = ({navigation}) => {
-  const navigateToNewCard = () => {
-    navigation.navigate(Routers.newCard);
+  const {cardsInfo} = useCardStore();
+  const navigateToAddNewCard = () => {
+    navigation.navigate(Routers.addNewCard);
   };
   const navigateToVerification = () => {
     navigation.navigate(Routers.verification);
@@ -55,23 +57,26 @@ export const PaymentMethodScreen: React.FC<
         />
         <View style={styles.cards}>
           <Pressable>
-            <Tables
-              leftType="icon"
-              left={<MasterCard />}
-              content="Mastercard * * * * 4 2 1 3"
-              caption="Primary"
-              rightType="icon"
-              right={<ChevronRight />}
-            />
+            {cardsInfo.map((card, index) => {
+              return (
+                <Tables
+                  Left={<MasterCard width={44} />}
+                  content={card.creditCardNumber}
+                  caption={index === 0 ? 'Primary ' : null}
+                  key={card.creditCardNumber + index}
+                  rightPress={<ChevronRight />}
+                />
+              );
+            })}
           </Pressable>
-          <Pressable onPress={navigateToNewCard}>
+          <Pressable onPress={navigateToAddNewCard}>
             <Tables
               content="Add another card"
               leftType="icon"
-              left={<AddCard />}
+              Left={<AddCard />}
               rightType="icon"
               right={<ChevronRight />}
-              onPress={navigateToNewCard}
+              onPress={navigateToAddNewCard}
             />
           </Pressable>
         </View>
@@ -93,7 +98,7 @@ export const PaymentMethodScreen: React.FC<
 
 const styles = StyleSheet.create({
   skipNav: {
-    paddingVertical: normalize('vertical', 25),
+    paddingVertical: normalize('vertical', 15),
   },
   paymentNav: {
     paddingTop: normalize('vertical', 5),
@@ -109,7 +114,6 @@ const styles = StyleSheet.create({
   button: {
     marginTop: normalize('vertical', 25),
   },
-
   cards: {
     marginTop: normalize('vertical', 20),
   },

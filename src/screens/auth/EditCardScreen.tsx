@@ -16,13 +16,26 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ButtonTransparent} from '../../components/ButtonTransparent';
 import {normalize} from '../../theme/metrics';
+import {useCardStore} from '../../store/useCardStore';
 
-export const CardScreen: React.FC<
+export const EditCardScreen: React.FC<
   NativeStackScreenProps<NavigationParamlist, Routers.card>
-> = ({navigation}) => {
-  const {control} = useForm();
+> = ({navigation, route}) => {
+  const {cardsInfo, updateCardInfo} = useCardStore();
+  const {cardIndex} = route.params;
+  const {control, watch, handleSubmit} = useForm({
+    defaultValues: {
+      creditCardNumber: cardsInfo[cardIndex].creditCardNumber,
+      creditCardName: cardsInfo[cardIndex].creditCardName,
+      date: cardsInfo[cardIndex].date,
+    },
+  });
+
   const navigateToCard = () => {
     navigation.navigate(Routers.newCard);
+  };
+  const navigateToUserCard = () => {
+    navigation.navigate(Routers.userCard);
   };
   return (
     <SafeAreaView edges={['bottom']} style={styles.safeArea}>
@@ -35,12 +48,16 @@ export const CardScreen: React.FC<
           leftPress={navigation.goBack}
           size="standard"
           title="YOUR CARD"></NavBars>
-        <Card></Card>
+        <Card
+          cardNumber={watch('creditCardNumber')}
+          cardName={watch('creditCardName')}
+          date={watch('date')}
+        />
         <View style={styles.mainInputHolder}>
           <View style={styles.inputHolder}>
             <Text style={styles.label}>Card Number</Text>
             <InputControlled
-              name="creditCard"
+              name="creditCardNumber"
               control={control}
               defaultValue=""
               rules={{required: true}}
@@ -52,20 +69,38 @@ export const CardScreen: React.FC<
           </View>
           <View style={styles.inputHolder}>
             <Text style={styles.label}>Cardholder Name</Text>
-            <TextInputs
-              type="text"
-              placeholder="Enter your holder name"></TextInputs>
+            <InputControlled
+              name="creditCardName"
+              control={control}
+              defaultValue=""
+              rules={{required: true}}
+              disabled={false}
+              disabledControl={false}
+              placeholder="Enter your holder name"
+            />
           </View>
           <View style={styles.dateHolder}>
-            <TextInputs
-              type="text"
-              placeholder="Enter your holder name"></TextInputs>
+            <InputControlled
+              name="date"
+              control={control}
+              defaultValue=""
+              rules={{required: true}}
+              disabled={false}
+              disabledControl={false}
+              placeholder="MM / YY / CVV"
+            />
           </View>
         </View>
         <ButtonPrimary
           label="Save"
           primaryBlock
-          style={styles.button}></ButtonPrimary>
+          onPress={handleSubmit(cardData => {
+            console.log(cardData);
+            updateCardInfo(cardData, cardIndex);
+            navigateToUserCard();
+          })}
+          style={styles.button}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -76,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   skipNav: {
-    paddingVertical: normalize('vertical', 25),
+    paddingVertical: normalize('vertical', 15),
   },
   label: {
     color: colors.ink.base,
@@ -84,10 +119,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   mainInputHolder: {
-    marginTop: 50,
+    marginTop: 40,
   },
   inputHolder: {
-    marginBottom: 30,
+    marginBottom: 20,
   },
   button: {
     marginTop: 'auto',

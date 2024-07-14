@@ -7,10 +7,11 @@ export enum Routers {
   verification = 'verification',
   paymentScreensTab = 'paymentScreensTab',
   paymentMethod = 'paymentMethod',
-  newCard = 'newCard',
+  addNewCard = 'addNewCard',
   cards = 'cards',
   modalScreen = 'modalScreen',
-  card = 'card',
+  editCard = 'editCard',
+  userCard = 'userCard',
 
   tab = 'tab',
   home = 'home',

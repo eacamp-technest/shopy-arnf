@@ -13,16 +13,18 @@ import {useForm} from 'react-hook-form';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import ArrowLeft from '../../../assets/vectors/chevron-left.svg';
 import {Routers} from '../../router/routers';
+import {useCardStore} from '../../store/useCardStore';
 
-export const NewCardScreen: React.FC<
-  NativeStackScreenProps<NavigationParamlist, Routers.newCard>
+export const AddNewCardScreen: React.FC<
+  NativeStackScreenProps<NavigationParamlist, Routers.addNewCard>
 > = ({navigation}) => {
-  const {control} = useForm();
-
-  const navigateToCard = () => {
-    navigation.navigate(Routers.card);
+  const {control, handleSubmit} = useForm();
+  const {addCardInfo, cardsInfo} = useCardStore();
+  console.log({cardsInfo});
+  const navigateToUserCard = () => {
+    navigation.navigate(Routers.userCard);
   };
-  const navigateToPaymentMethod= () => {
+  const navigateToPaymentMethod = () => {
     navigation.navigate(Routers.paymentMethod);
   };
   return (
@@ -38,7 +40,7 @@ export const NewCardScreen: React.FC<
         <View style={styles.inputHolder}>
           <Text style={styles.label}>Card Number</Text>
           <InputControlled
-            name="creditCard"
+            name="creditCardNumber"
             control={control}
             defaultValue=""
             rules={{required: true}}
@@ -50,15 +52,35 @@ export const NewCardScreen: React.FC<
         </View>
         <View style={styles.inputHolder}>
           <Text style={styles.label}>Cardholder Name</Text>
-          <TextInputs type="text" placeholder="Enter your holder name" />
+          <InputControlled
+            name="creditCardName"
+            control={control}
+            defaultValue=""
+            rules={{required: true}}
+            disabled={false}
+            disabledControl={false}
+            placeholder="Enter your card name"
+          />
         </View>
-        <TextInputs type="text" placeholder="MM / YY / CVV" />
+        <InputControlled
+          name="date"
+          control={control}
+          defaultValue=""
+          rules={{required: true}}
+          disabled={false}
+          disabledControl={false}
+          placeholder="MM / YY / CVV"
+        />
       </View>
-
       <ButtonPrimary
         label="Add card"
         primaryBlock
-        onPress={navigateToCard}></ButtonPrimary>
+        onPress={handleSubmit(function (cardData) {
+          console.log(cardData);
+          addCardInfo(cardData);
+          navigateToUserCard();
+        })}
+      />
     </View>
   );
 };

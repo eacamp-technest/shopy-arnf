@@ -143,8 +143,7 @@ const styles = StyleSheet.create({
     color: colors.ink.base,
     marginTop: 2,
   },
-  withButton: {
-  },
+  withButton: {},
   large: {
     flexDirection: 'row',
     alignItems: 'center',

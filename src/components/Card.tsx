@@ -1,29 +1,29 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable, TextInput} from 'react-native';
 import {TypographyStyles} from '../theme/typography';
 import {colors} from '../theme/colors';
 import React from 'react';
 import MasterCard from '../../assets/vectors/masterCard.svg';
-import {TextInput} from 'react-native-gesture-handler';
 
-export const Card = () => {
+export const Card = ({onPress, cardNumber, cardName, date}) => {
   return (
-    <View>
+    <Pressable onPress={onPress}>
       <View style={styles.mainView}>
         <View style={styles.masterCardView}>
           <Text style={styles.label}>Universal Card</Text>
           <MasterCard width={55} height={55}></MasterCard>
         </View>
-        <TextInput style={styles.numbers}>4532 1245 8765 2156</TextInput>
+        <TextInput style={styles.numbers} editable={false} value={cardNumber} />
+
         <View style={styles.cardLabels}>
           <Text style={styles.cardText}>CARD HOLDER </Text>
           <Text style={styles.cardText}>CARD SAVE</Text>
         </View>
         <View style={styles.cardInfo}>
-          <Text style={styles.info}>Brooklyn Simmons</Text>
-          <Text style={styles.info}>12/24 </Text>
+          <Text style={styles.info}>{cardName}</Text>
+          <Text style={styles.info}>{date} </Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
