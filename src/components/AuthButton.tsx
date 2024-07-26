@@ -44,16 +44,16 @@ export const AuthButton: React.FC<IButtonAuth> = ({
         style={({pressed}) => {
           return [
             styles.container,
-            hasGoogleSign && styles.googleContainer,
-            hasFacebookSign && styles.facebookContainer,
-            hasTwitterSign && styles.twitterContainer,
-            pressed && styles[platform],
+            hasGoogleSign ? styles.googleContainer:null,
+            hasFacebookSign ? styles.facebookContainer:null,
+            hasTwitterSign ? styles.twitterContainer:null,
+            pressed ? styles[platform]:null,
           ];
         }}
         disabled={disabled}
         onPress={onPress}>
         {icons[platform]}
-        <Text style={[styles.label, hasGoogleSign && styles.googleLabel]}>
+        <Text style={[styles.label, hasGoogleSign ? styles.googleLabel:null]}>
           {label}
         </Text>
       </Pressable>

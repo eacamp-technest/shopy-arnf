@@ -1,8 +1,8 @@
 import React, {Fragment, useCallback, useMemo} from 'react';
 import {StyleProp, Text, TextStyle} from 'react-native';
 
-import { colors } from '../theme/colors';
-import { TypographyStyles } from '../theme/typography';
+import {colors} from '../theme/colors';
+import {TypographyStyles} from '../theme/typography';
 
 interface HighlightedText {
   text: string;
@@ -63,7 +63,7 @@ export const TextLink: React.FC<TextLinkProps> = ({
   }, [content, createHighlightedText, highlighted]);
 
   return (
-    <Text style={[center && TypographyStyles.SmallNormalSemibold, style]}>
+    <Text style={[center ? TypographyStyles.SmallNormalSemibold:null, style]}>
       {renderElements}
     </Text>
   );

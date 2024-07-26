@@ -1,25 +1,28 @@
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native'
-import React from 'react'
-import { processColorsInProps } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
-import ChevronLeft from '../../assets/vectors/chevron-left.svg'
-import Settings from '../../assets/vectors/settings.svg'
-import { ButtonTransparent } from './ButtonTransparent';
-import { colors } from '../theme/colors';
-import User from '../../assets/vectors/user.svg'
-import { TypographyStyles } from '../theme/typography';
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
+import React from 'react';
+import {colors} from '../theme/colors';
+import User from '../../assets/vectors/user.svg';
+import {TypographyStyles} from '../theme/typography';
 
-type TSize = 'standard' | 'large'
-type TBack = 'settings' | 'none'
+type TSize = 'standard' | 'large';
+type TBack = 'settings' | 'none';
 
 interface INavBar {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  size?:TSize;
-  settings?:TBack;
-  leftPress?: ()=>void;
-  rightPress?:()=>void;
-  title?:string;
-  largeTitle?:string;
+  size?: TSize;
+  settings?: TBack;
+  leftPress?: () => void;
+  rightPress?: () => void;
+  title?: string;
+  largeTitle?: string;
   button?: React.ReactNode;
   caption?: string;
   largeIcon?: string | React.ReactNode;
@@ -27,77 +30,121 @@ interface INavBar {
   style?: StyleProp<ViewStyle>;
 }
 
-export const NavBars:React.FC<INavBar> = ({leftIcon,rightIcon,rightPress,leftPress,size,settings,title,largeTitle,button,caption,largeIcon,onPress,style}) => {
-  if(size==='standard' && settings==='settings'){
-    return(
-      <View style={[styles.standard,button && !title ? styles.withButton:null]}>
+export const NavBars: React.FC<INavBar> = ({
+  leftIcon,
+  rightIcon,
+  rightPress,
+  leftPress,
+  size,
+  settings,
+  title,
+  largeTitle,
+  button,
+  caption,
+  largeIcon,
+  onPress,
+  style,
+}) => {
+  if (size === 'standard' ? settings === 'settings' : null) {
+    return (
+      <View
+        style={[
+          styles.standard,
+          button ? (!title ? styles.withButton : null) : null,
+        ]}>
         <View style={styles.settings}>
-          <ChevronLeft onPress={leftPress} hitSlop={{right:12,left:12,top:12,bottom:12}}/>
+          <Pressable
+            onPress={leftPress}
+            hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+            {leftIcon ? leftIcon : button}
+          </Pressable>
           <Text style={styles.settingsTitle}>Settings</Text>
         </View>
         <Text style={styles.title}>{title}</Text>
-      {rightIcon?<Settings onPress={rightPress} color={colors.ink.base} hitSlop={{right:12,left:12,top:12,bottom:12}}/> : button}
+        <Pressable
+          onPress={rightPress}
+          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+          {rightIcon ? rightIcon : button}
+        </Pressable>
       </View>
-    )
-  } 
-  else if(size ==='standard'){
-    return(
-      <View style={[styles.standard,button && !title ? styles.withButton:null, size==='standard' && !button && !rightIcon? styles.singleTitle : null]}> 
-        {leftIcon?<ChevronLeft onPress={leftPress} hitSlop={{right:12,left:12,top:12,bottom:12}}/>:button}
-        <Text style={styles.title}>{title}</Text>
-        {rightIcon?<Settings onPress={rightPress} color={colors.ink.base} hitSlop={{right:12,left:12,top:12,bottom:12}}/> : button}
+    );
+  } else if (size === 'standard') {
+    return (
+      <View
+        style={[
+          styles.standard,
+          button ? (!title ? styles.withButton : null) : null,
+          size === 'standard'
+            ? !button
+              ? !rightIcon
+                ? styles.singleTitle
+                : null
+              : null
+            : null,
+        ]}>
+        <Pressable
+          onPress={leftPress}
+          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+          {leftIcon ? leftIcon : button}
+        </Pressable>
+        <Text style={[styles.title, style]}>{title}</Text>
+        <Pressable
+          onPress={rightPress}
+          hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}>
+          {rightIcon ? rightIcon : button}
+        </Pressable>
       </View>
-    )
-  } else{
-    return(
-      <View style={styles.large}>
+    );
+  } else {
+    return (
+      <View style={[styles.large, style]}>
         <View>
-        <Text style={styles.largeTitle}>{largeTitle}</Text>
-        <Text style={styles.caption}>{caption}</Text>
+          <Text style={styles.largeTitle}>{largeTitle}</Text>
+          <Text style={styles.caption}>{caption}</Text>
         </View>
-       {rightIcon? <User onPress={rightPress} hitSlop={{right:12,left:12,top:12,bottom:12}}/> : button}
+        {rightIcon ? rightIcon : (
+          button
+        )}
       </View>
-    )
+    );
   }
-}
+};
 
 const styles = StyleSheet.create({
-  standard:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
-    gap:40
+  standard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
-  settings:{
-    flexDirection:'row',
-    alignItems:'center',
+  settings: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  title:{
+  title: {
     ...TypographyStyles.title3,
-    color:colors.ink.base
+    color: colors.ink.base,
   },
-  largeTitle:{
+  largeTitle: {
     ...TypographyStyles.title2,
-    color:colors.ink.base
+    color: colors.ink.base,
   },
-  caption:{
+  caption: {
     ...TypographyStyles.RegularNormalRegular,
-    color:colors.ink.base
+    color: colors.ink.base,
   },
-  settingsTitle:{
+  settingsTitle: {
     ...TypographyStyles.LargeNoneRegular,
-    color:colors.ink.base,
-    marginTop:2
+    color: colors.ink.base,
+    marginTop: 2,
   },
-  withButton:{
-    gap:120
+  withButton: {
   },
-  large:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
+  large: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  singleTitle:{
-    marginRight:120
-  }
-})
+  singleTitle: {
+    marginRight: 120,
+  },
+});

@@ -3,7 +3,7 @@ import {MainRouter} from './MainRouter';
 import {AuthRouter} from './AuthRouter';
 import {NavigationContainer} from '@react-navigation/native';
 
-const isAuth = false;
+const isAuth = true;
 
 const Router = () => {
   return (

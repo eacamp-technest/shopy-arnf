@@ -43,36 +43,36 @@ export const ButtonTransparent: React.FC<IButtonTransparent> = ({
       style={({pressed}) => {
         return [
           styles.container,
-          transparentBlock && styles.transparentBlock,
-          transparentLarge && styles.transparentLarge,
-          transparentSmall && styles.transparentSmall,
-          modalButton && styles.modalButton,
-          pressed && styles.pressed,
-          disabled && styles.disabled,
+          transparentBlock ? styles.transparentBlock:null,
+          transparentLarge ? styles.transparentLarge:null,
+          transparentSmall ? styles.transparentSmall:null,
+          modalButton ? styles.modalButton:null,
+          pressed ? styles.pressed:null,
+          disabled ? styles.disabled:null,
           customStyles,
-          centered && styles.centered,
+          centered ? styles.centered:null
         ];
       }}
       disabled={disabled}
       onPress={onPress}
       onPressIn={() => setPressing(true)}
       onPressOut={() => setPressing(false)}>
-      {hasMessageSign && (
+      {hasMessageSign ? (
         <MessageSign
           opacity={showMessageSign ? 1 : 0}
           color={disabled ? colors.sky.base : colors.primary.base}
         />
-      )}
+      ):null}
       <Text
         style={[
           styles.text,
           styles.textNomal,
-          pressing && styles.textPressed,
-          disabled && styles.textDisabled,
+          pressing ? styles.pressed:null,
+          disabled ? styles.textDisabled:null,
         ]}>
         {label}
       </Text>
-      {hasArrowSign && (
+      {hasArrowSign ? (
         <ArrowRight
           opacity={showArrowSign ? 1 : 0}
           color={
@@ -83,7 +83,7 @@ export const ButtonTransparent: React.FC<IButtonTransparent> = ({
               : colors.primary.base
           }
         />
-      )}
+      ):null}
     </Pressable>
   );
 };
