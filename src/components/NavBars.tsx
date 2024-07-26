@@ -102,12 +102,7 @@ export const NavBars: React.FC<INavBar> = ({
           <Text style={styles.largeTitle}>{largeTitle}</Text>
           <Text style={styles.caption}>{caption}</Text>
         </View>
-        {rightIcon ? (
-          <User
-            onPress={rightPress}
-            hitSlop={{right: 12, left: 12, top: 12, bottom: 12}}
-          />
-        ) : (
+        {rightIcon ? rightIcon : (
           button
         )}
       </View>
@@ -119,8 +114,7 @@ const styles = StyleSheet.create({
   standard: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 120,
+    justifyContent: 'space-between'
   },
   settings: {
     flexDirection: 'row',

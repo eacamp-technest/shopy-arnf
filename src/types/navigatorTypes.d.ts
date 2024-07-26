@@ -19,4 +19,6 @@ export type NavigationParamlist = {
   [Routers.notifications]: undefined;
   [Routers.settings]: undefined;
   [Routers.tab]: undefined;
+  [Routers.popular]:undefinedl
+  [Routers.allstore]:undefined;
 };

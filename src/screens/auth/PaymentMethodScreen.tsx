@@ -1,7 +1,6 @@
 import {View, Text, Switch, StyleSheet, Pressable} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {Tables} from '../../components/Tables';
-import Facebook from '../../../assets/vectors/facebook.svg';
 import {colors} from '../../theme/colors';
 import {ButtonTransparent} from '../../components/ButtonTransparent';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -10,7 +9,7 @@ import {Routers} from '../../router/routers';
 import {NavBars} from '../../components/NavBars';
 import {ButtonPrimary} from '../../components/ButtonPrimary';
 import {TextLink} from '../../components/TextLink';
-import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import {TypographyStyles} from '../../theme/typography';
 import MasterCard from '../../../assets/vectors/masterCard.svg';
 import ChevronRight from '../../../assets/vectors/chevron-right.svg';

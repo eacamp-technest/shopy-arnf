@@ -1,6 +1,5 @@
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
-import {Routers} from '../router/routers';
 import { colors } from '../theme/colors';
 
 export const defaultScreenOptions: NativeStackNavigationOptions = {

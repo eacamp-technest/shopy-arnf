@@ -19,6 +19,8 @@ export enum Routers {
   notifications = 'notifications',
   settings = 'settings',
   test = 'test',
+  popular = 'popular',
+  allstore = 'allstore'
 }
 
 export enum StackRoutes {
